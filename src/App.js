@@ -1,36 +1,32 @@
 import React from 'react';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Home from './Components/Home';
 import Login from './Components/Login';
-import StudentSIgnup from './Components/Signup/StudentSIgnup';
+import StudentSignup from './Components/Signup/StudentSIgnup';
 import CompanySignup from './Components/Signup/CompanySignup';
 import AdminSignup from './Components/Signup/AdminSignup';
 import Dashboard from './Components/AdminPanel/Dashboard';
 
-export default function App() {
 
- 
+export default function App() {
   return (
     <BrowserRouter>
-      <div className='ml-0'>
-        
+  
         <Routes>
-          <Route path='/' element={<Home />} />    
-        </Routes>     
-      </div>
-
-      <div>
-        <Routes>
-          <Route path='/login' element={<Login />} />
-          <Route path='/student' element={<StudentSIgnup />} />
-          <Route path='/company' element={<CompanySignup />} />
-          <Route path='/admin' element={<AdminSignup />} />
-          <Route path="/admin-panel" element={<Dashboard/>}/>
+          <Route path="/" element={<Home />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/student" element={<StudentSignup />} />
+          <Route path="/company" element={<CompanySignup />} />
+          <Route path="/admin" element={<AdminSignup />} />
+          <Route path="/admin-panel" element={<Dashboard />} />
+          
+          {/* <Route path="/admin-panel" element={<PrivateRoute element={<Dashboard />} />} /> */}
         </Routes>
-      </div>
-      </BrowserRouter>
+
+    </BrowserRouter>
   );
 }
+
 
 
 

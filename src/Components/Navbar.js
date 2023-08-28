@@ -5,7 +5,7 @@ import img2 from './Images/img2.png';
 
 
 export default function Navbar() {
-  const [showDropdown, setShowDropdown] = useState(false);
+  // const [showDropdown, setShowDropdown] = useState(false);
   return (
     <div className='bg-cyan-800 text-xs sm:text-base flex max-sm:text-center'>
       {/* Navbar */}

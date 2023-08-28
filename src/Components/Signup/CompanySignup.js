@@ -75,7 +75,7 @@ export default function CompanySignup() {
 
             {/* back button */}
             <div className="mt-3 ml-1 max-sm:text-sm">
-              <button><i className="fa-solid fa-arrow-left text-white sm:text-sm text-xs  sm:mr-1  "></i> <Link to='/'>Back to Home</Link></button>
+              <button><i className="fa-solid fa-arrow-left text-white sm:text-sm text-xs  sm:mr-1  "></i> <Link to='/admin-panel'>Back to Dashboard</Link></button>
             </div>
           </div>
     </div>
