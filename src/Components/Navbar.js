@@ -37,7 +37,7 @@ export default function Navbar() {
           <button  className='sm:mr-5 mr-1 px-4 py-1 rounded  transform sm:hover:scale-105 hover:bg-gray-300 hover:text-cyan-900 transition-transform duration-300'>
               <Link to='/login'>Login</Link>
             </button>
-            <div className='text-white sm:font-semibold flex relative  group'>
+            {/* <div className='text-white sm:font-semibold flex relative  group'>
             <button
               className='sm:mr-5 mr-1 px-4 py-1 rounded
               transform sm:hover:scale-105 hover:bg-gray-300 hover:text-cyan-900 transition-transform duration-300'
@@ -54,7 +54,7 @@ export default function Navbar() {
                 </ul>
               </div>
             )}
-          </div>
+          </div> */}
           </div>
         </div>
       </div>
