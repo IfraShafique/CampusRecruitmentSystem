@@ -19,7 +19,7 @@ export default function Navbar() {
         </div>
 
         {/* navigation */}
-        <div className='flex items-center '>
+        <div className='flex items-center max-sm:mx-auto'>
           <ul className='flex text-white sm:font-semibold max-sm:-ml-3 max-sm:justify-center'>
             <li className='sm:mr-5 mr-1  px-4 py-1 rounded transform sm:hover:scale-105 hover:bg-gray-300 hover:text-cyan-900 transition-transform duration-300'>
             <Link to='/'>Home</Link>
