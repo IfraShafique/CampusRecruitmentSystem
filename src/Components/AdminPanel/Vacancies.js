@@ -94,7 +94,7 @@ export default function StudentInfo(props) {
                 <li className="bg-cyan-800 rounded px-5 py-5 cursor-pointer my-3">
                   <h1 className="sm:text-2xl text-xl font-bold">Frondend Developer</h1>
                   <p>BrandSoft Solution</p>
-                  <p><i class="fa-solid fa-business-time text-white mr-3"></i>Full Time </p>
+                  <p><i class="fa-solid fa-briefcase text-white mr-4"></i>Full Time </p>
                   <p>
                     <i class="fa-solid fa-location-dot text-white mr-5"></i>
                     Karachi <span className="ml-[5%] font-semibold sm:text-[1.1rem]">Salary 50,000 to 70,000</span>
@@ -112,7 +112,7 @@ export default function StudentInfo(props) {
                 <li className="bg-cyan-800 rounded px-5 py-5 cursor-pointer my-3">
                   <h1 className="sm:text-2xl text-xl font-bold">Trainee Python Developer</h1>
                   <p>Squarera</p>
-                  <p><i class="fa-solid fa-business-time text-white mr-3"></i>Remote </p>
+                  <p><i class="fa-solid fa-briefcase text-white mr-4"></i>Remote </p>
                   <p>
                     <i class="fa-solid fa-location-dot text-white mr-5"></i>
                     Karachi <span className="ml-[5%] font-semibold sm:text-[1.1rem]">Salary 20,000 to 30,000</span>
