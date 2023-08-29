@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import img2 from '../Images/img2.png';
 import { Link } from 'react-router-dom';
+import AllInfo from './AllInfo';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import ChangePassword from './ChangePassword';
 
 export default function Dashboard() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -9,10 +12,11 @@ export default function Dashboard() {
     setMenuOpen(!menuOpen);
   };
   return (
+    // <BrowserRouter>
     <div className=''>
        
         {/* Hamburger Button */}
-      <div className="sm:hidden bg-cyan-950 text-white py-3 px-4">
+      <div className="sm:hidden bg-cyan-950 text-white py-3 px-4 ">
         <button onClick={toggleMenu} className="text-xl">
           <i className="fa-solid fa-bars"></i>
         </button>
@@ -26,7 +30,7 @@ export default function Dashboard() {
       <div className='flex '>
 
         {/* menu */}
-        <div className={`w-full h-[100vh] ${menuOpen ? 'block' : 'hidden'} sm:block xl:w-[20%] lg:w-[30%] md:w-[35%] w-[40%] h-[100vh] bg-white sm:text-xl`}>
+        <div className={`w-[60%] h-[100vh] ${menuOpen ? 'block' : 'hidden'} sm:block xl:w-[20%] lg:w-[30%] md:w-[35%] w-[100%] h-[100vh] bg-white sm:text-xl`}>
         <div className='text-center pt-8 pb-5'>
           <i class="fa-solid fa-user text-cyan-950 md:text-8xl text-4xl"></i>
         </div>
@@ -37,19 +41,24 @@ export default function Dashboard() {
             <li className='md:py-4 py-2 hover:bg-gray-200 sm:pl-10 pl-5 cursor-pointer'><i class="fa-solid fa-graduation-cap text-cyan-950 mr-5"></i>Student</li>
             <li className='md:py-4 py-2 hover:bg-gray-200 sm:pl-10 pl-5 cursor-pointer'><i class="fa-regular fa-address-card text-cyan-950 mr-5"></i><Link to='/company'>Company Registration</Link></li>
             <li className='md:py-4 py-2 hover:bg-gray-200 sm:pl-10 pl-5 cursor-pointer'><i class="fa-solid fa-id-card text-cyan-950 mr-5"></i><Link to='/company'>Student Registration</Link></li>
-            <li className='md:py-4 py-2 hover:bg-gray-200 sm:pl-10 pl-5 cursor-pointer'><i class="fa-solid fa-lock text-cyan-950 mr-5"></i>Change Password</li>
+            <li className='md:py-4 py-2 hover:bg-gray-200 sm:pl-10 pl-5 cursor-pointer'><i class="fa-solid fa-lock text-cyan-950 mr-5"></i><Link to='/changePass'>Change Password</Link></li>
             <li className='md:py-4 py-2 hover:bg-gray-200 sm:pl-10 pl-5 cursor-pointer'><i class="fa-solid fa-right-to-bracket text-cyan-950 mr-5"></i><Link to='/login'>Logout</Link></li>
           </ul>
         </div>
 
  
         {/* Details */}
-        <div className='xl:w-[80%] lg:w-[70%] md:w-[65%] w-[100%] h-[100vh] bg-gray-100'>
-
+        <div className={`xl:w-[80%] lg:w-[70%] md:w-[65%] w-[100%] h-[100vh] bg-gray-100 ${menuOpen ? 'hidden' : 'block'}`}>
+        {/* <Routes>
+          <Route path='/dashboard' element = {<AllInfo/>}/>
+          <Route path='/changepass' element = {<ChangePassword/>}/>
+        </Routes> */}
+        <AllInfo/>
         
-        <div className={` bg-gray-100 text-white md:text-2xl  max-md:font-semibold text-center ${menuOpen ? 'hidden' : 'block'}`}>
+        
+        {/* <div className={` bg-gray-100 text-white md:text-2xl  max-md:font-semibold text-center ${menuOpen ? 'hidden' : 'block'}`}> */}
         {/* <div className='sm:w-[80%] w-[100%] h-[100vh] bg-gray-100 text-white sm:text-2xl max-sm:font-semibold text-center  '> */}
-          <div className='mt-20 sm:mx-20 ml-2 max-sm:pl-5'>
+          {/* <div className='mt-20 sm:mx-20 ml-2 max-sm:pl-5'>
             <ul className='flex flex-wrap max-md:flex-col'>
               <li className='lg:w-[30%] xl:w-[35%] w-[90%] h-[25vh] xl:h-[20vh] bg-cyan-800 pt-8'>Total Company Registered
                 <p className='sm:pt-3 text-3xl'>5</p>
@@ -61,10 +70,11 @@ export default function Dashboard() {
                 <p  className='sm:pt-3 text-3xl'>12</p>
               </li>
             </ul>
-          </div>
-        </div>
+          </div> */}
+        {/* </div> */}
         </div>
       </div>
     </div>
+    // </BrowserRouter>
   )
 }

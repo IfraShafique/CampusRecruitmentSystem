@@ -6,7 +6,8 @@ import StudentSignup from './Components/Signup/StudentSIgnup';
 import CompanySignup from './Components/Signup/CompanySignup';
 import AdminSignup from './Components/Signup/AdminSignup';
 import Dashboard from './Components/AdminPanel/Dashboard';
-
+import ChangePassword from './Components/AdminPanel/ChangePassword';
+import AllInfo from './Components/AdminPanel/AllInfo';
 
 export default function App() {
   return (
@@ -19,9 +20,15 @@ export default function App() {
           <Route path="/company" element={<CompanySignup />} />
           <Route path="/admin" element={<AdminSignup />} />
           <Route path="/admin-panel" element={<Dashboard />} />
+          <Route path="/allinfo" element={<AllInfo />} />
+          <Route path='/changepass' element = {<ChangePassword/>}/>
           
           {/* <Route path="/admin-panel" element={<PrivateRoute element={<Dashboard />} />} /> */}
         </Routes>
+{/* 
+        <Routes>
+          
+        </Routes> */}
 
     </BrowserRouter>
   );
