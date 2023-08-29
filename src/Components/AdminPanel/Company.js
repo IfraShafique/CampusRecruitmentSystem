@@ -35,10 +35,11 @@ export default function CompanyInfo(props) {
             <i class="fa-solid fa-user text-cyan-950 md:text-8xl text-4xl"></i>
           </div>
   
-            <ul className='max-md:text-sm'>
+          <ul className='max-md:text-sm'>
               <li className='md:py-4 py-2 hover:bg-gray-200 sm:pl-10 pl-5 cursor-pointer'><i class="fa-solid fa-gauge text-cyan-950 mr-5"></i><Link to='/admin-panel'>Dashboard</Link></li>
               <li className='md:py-4 py-2 hover:bg-gray-200 sm:pl-10 pl-5 cursor-pointer'><i class="fa-solid fa-building text-cyan-950 mr-5"></i><Link to='/companyinfo'>Companies</Link></li>
               <li className='md:py-4 py-2 hover:bg-gray-200 sm:pl-10 pl-5 cursor-pointer'><i class="fa-solid fa-graduation-cap text-cyan-950 mr-5"></i><Link to='/studentinfo'>Students</Link></li>
+              <li className='md:py-4 py-2 hover:bg-gray-200 sm:pl-10 pl-5 cursor-pointer'><i class="fa-solid fa-handshake text-cyan-950 mr-5"></i><Link to='/vacancy'>Vacancies</Link></li>
               <li className='md:py-4 py-2 hover:bg-gray-200 sm:pl-10 pl-5 cursor-pointer'><i class="fa-regular fa-address-card text-cyan-950 mr-5"></i><Link to='/company'>Company Registration</Link></li>
               <li className='md:py-4 py-2 hover:bg-gray-200 sm:pl-10 pl-5 cursor-pointer'><i class="fa-solid fa-id-card text-cyan-950 mr-5"></i><Link to='/company'>Student Registration</Link></li>
               <li className='md:py-4 py-2 hover:bg-gray-200 sm:pl-10 pl-5 cursor-pointer'><i class="fa-solid fa-lock text-cyan-950 mr-5"></i><Link to='/changePass'>Change Password</Link></li>
@@ -56,22 +57,31 @@ export default function CompanyInfo(props) {
 
                 <div>
                     <table className='font-extralight w-[100%]'>
-                        <thead className='lg:text-xl sm:text-sm text-sm'>
-                            <th className='border-b-[1px] border-r-[1px] border-cyan-600 xl:px-4 pb-8'>S.No</th>
-                            <th className='border-b-[1px] border-r-[1px] border-cyan-600 xl:px-10 lg:px-8 md:px-6 sm:px-4 pb-8'>Company Name</th>
-                            <th className='border-b-[1px] border-r-[1px] border-cyan-600 xl:px-10 lg:px-8 md:px-6 sm:px-4 pb-8'>Contact No</th>
-                            <th className='border-b-[1px] border-r-[1px] border-cyan-600 xl:px-10 lg:px-8 md:px-6 sm:px-4 pb-8'>Email</th>
-                            <th className='border-b-[1px]  border-cyan-600 xl:px-10 lg:px-8 md:px-6 sm:px-4 pb-8'>Action</th>
+                        <thead className='lg:text-xl sm:text-sm text-[0.6rem] items-center'>
+                            <th className='border-b-[1px] border-r-[1px] border-cyan-600 w-[5%] pb-5' >S.No</th>
+                            <th className='border-b-[1px] border-r-[1px] border-cyan-600 w-[25%] pb-5'>Company Name</th>
+                            <th className='border-b-[1px] border-r-[1px] border-cyan-600 w-[15%] pb-5'>Contact No</th>
+                            <th className='border-b-[1px] border-r-[1px] border-cyan-600 w-[15%] pb-5'>Email</th>
+                            <th className='border-b-[1px]  border-cyan-600 w-[8%] pb-5'>Action</th>
                         </thead>
 
+                        <tbody className='font-[arial] font-thin lg:text-xl sm:text-sm text-[0.6rem] '>
+                            <tr className='lg:text-base sm:text-sm text-xs '>
+                                <th className='border-b-[1px] border-r-[1px] border-cyan-600 py-4 w-[5%]'>01</th>
+                                <th className='border-b-[1px] border-r-[1px] border-cyan-600 py-4 w-[25%]'>InApp Solution</th>
+                                <th className='border-b-[1px] border-r-[1px] border-cyan-600 py-4 w-[15%]'>0334-3586859</th>
+                                <th className='border-b-[1px] border-r-[1px] border-cyan-600 py-4 w-[15%]'>abc@gmail.com</th>
+                                <th className='border-b-[1px]  border-cyan-600 py-4 w-[8] text-cyan-500 hover:text-cyan-300'><Link to={'/details'}>Details</Link></th>
+                            </tr>
                         
                             <tr className='lg:text-base sm:text-sm text-xs'>
-                                <th className='border-b-[1px] border-r-[1px] border-cyan-600 py-4 xl:px-10 lg:px-8 md:px-6 sm:px-4'>01</th>
-                                <th className='border-b-[1px] border-r-[1px] border-cyan-600 py-4 xl:px-10 lg:px-8 md:px-6 sm:px-4'>InApp Solution</th>
-                                <th className='border-b-[1px] border-r-[1px] border-cyan-600 py-4 xl:px-10 lg:px-8 md:px-6 sm:px-4'>0334-3586859</th>
-                                <th className='border-b-[1px] border-r-[1px] border-cyan-600 py-4 xl:px-10 lg:px-8 md:px-6 sm:px-4'>abc@gmail.com</th>
-                                <th className='border-b-[1px]  border-cyan-600 py-4 xl:px-10 lg:px-8 md:px-6 sm:px-4 text-cyan-500 hover:text-cyan-300'><Link to={'/details'}>Details</Link></th>
+                                <th className='border-b-[1px] border-r-[1px] border-cyan-600 py-4 w-[5%]'>02</th>
+                                <th className='border-b-[1px] border-r-[1px] border-cyan-600 py-4 w-[25%]'>Inciter Tech</th>
+                                <th className='border-b-[1px] border-r-[1px] border-cyan-600 py-4 w-[15%]'>0334-3586859</th>
+                                <th className='border-b-[1px] border-r-[1px] border-cyan-600 py-4 w-[15%] '>xyz1fdfdg23@gmail.com</th>
+                                <th className='border-b-[1px]  border-cyan-600 py-4 w-[8%] text-cyan-500 hover:text-cyan-300'><Link to={'/details'}>Details</Link></th>
                             </tr>
+                        </tbody>
                         
                     </table>
                 </div>

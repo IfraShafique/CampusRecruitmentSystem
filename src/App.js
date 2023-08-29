@@ -10,6 +10,7 @@ import ChangePassword from './Components/AdminPanel/ChangePassword';
 import AllInfo from './Components/AdminPanel/AllInfo';
 import Company from './Components/AdminPanel/Company';
 import StudentInfo from './Components/AdminPanel/StudentInfo';
+import Vacancies from './Components/AdminPanel/Vacancies';
 
 export default function App() {
   return (
@@ -26,6 +27,7 @@ export default function App() {
           <Route path='/changepass' element = {<ChangePassword/>}/>
           <Route path='/companyinfo' element = {<Company/>}/>
           <Route path='/studentinfo' element = {<StudentInfo/>}/>
+          <Route path='/vacancy' element = {<Vacancies/>}/>
           
           {/* <Route path="/admin-panel" element={<PrivateRoute element={<Dashboard />} />} /> */}
         </Routes>
