@@ -32,15 +32,15 @@ export default function StudentInfo(props) {
 
         {/* menu */}
         <div
-          className={`w-[60%] h-[100vh] ${
+          className={`w-[100%] h-[100vh] ${
             menuOpen ? "block" : "hidden"
-          } sm:block xl:w-[20%] lg:w-[30%] md:w-[35%] w-[100%] h-[100vh] bg-white sm:text-xl`}
+          } sm:block xl:w-[20%] lg:w-[30%] md:w-[35%] w-[100%] h-[100vh] bg-white sm:text-xl `}
         >
           <div className="text-center pt-8 pb-5">
             <i class="fa-solid fa-user text-cyan-950 md:text-8xl text-4xl"></i>
           </div>
 
-          <ul className="max-md:text-sm">
+          <ul className="max-md:text-sm max-sm:pl-5">
             <li className="md:py-4 py-2 hover:bg-gray-200 sm:pl-10 pl-5 cursor-pointer">
               <i class="fa-solid fa-gauge text-cyan-950 mr-5"></i>
               <Link to="/admin-panel">Dashboard</Link>
@@ -83,7 +83,7 @@ export default function StudentInfo(props) {
             menuOpen ? "hidden" : "block"
           }`}
         >
-          <div className=" sm:w-[80%] w-[100%] ml-5 max-sm:flex max-sm:flex-col max-sm:items-center max-sm:mx-3">
+          <div className=" sm:w-[80%] w-[100%] sm:ml-5 max-sm:flex max-sm:flex-col max-sm:items-center ">
             <h1 className="text-cyan-950 sm:text-4xl text-2xl font-bold mb-10 text-center">
               Job Vacancies
             </h1>
@@ -97,7 +97,7 @@ export default function StudentInfo(props) {
                   <p><i class="fa-solid fa-business-time text-white mr-3"></i>Full Time </p>
                   <p>
                     <i class="fa-solid fa-location-dot text-white mr-5"></i>
-                    Karachi <span className="ml-[5%] font-semibold text-[1.1rem]">Salary 50,000 to 70,000</span>
+                    Karachi <span className="ml-[5%] font-semibold sm:text-[1.1rem]">Salary 50,000 to 70,000</span>
                   </p>
                   <p className="my-2">
                     Fresh Graduate (Bachelor/Master in Computer Science or
@@ -115,7 +115,7 @@ export default function StudentInfo(props) {
                   <p><i class="fa-solid fa-business-time text-white mr-3"></i>Remote </p>
                   <p>
                     <i class="fa-solid fa-location-dot text-white mr-5"></i>
-                    Karachi <span className="ml-[5%] font-semibold text-[1.1rem]">Salary 20,000 to 30,000</span>
+                    Karachi <span className="ml-[5%] font-semibold sm:text-[1.1rem]">Salary 20,000 to 30,000</span>
                   </p>
                   <p className="my-2">
                   As a Junior Python Developer trainee, you will have the opportunity 
