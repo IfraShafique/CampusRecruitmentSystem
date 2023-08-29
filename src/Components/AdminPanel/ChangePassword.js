@@ -2,8 +2,7 @@
 import React, { useState } from 'react';
 import img2 from '../Images/img2.png';
 import { Link } from 'react-router-dom';
-import AllInfo from './AllInfo';
-import Dashboard from './Dashboard'
+
 
 export default function ChangePassword(props) {
     const [menuOpen, setMenuOpen] = useState(false);
@@ -12,7 +11,7 @@ export default function ChangePassword(props) {
       setMenuOpen(!menuOpen);
     };
     return (
-      // <BrowserRouter>
+
       <div className=''>
          
           {/* Hamburger Button */}
@@ -38,8 +37,8 @@ export default function ChangePassword(props) {
   
             <ul className='max-md:text-sm'>
               <li className='md:py-4 py-2 hover:bg-gray-200 sm:pl-10 pl-5 cursor-pointer'><i class="fa-solid fa-gauge text-cyan-950 mr-5"></i><Link to='/admin-panel'>Dashboard</Link></li>
-              <li className='md:py-4 py-2 hover:bg-gray-200 sm:pl-10 pl-5 cursor-pointer'><i class="fa-solid fa-building text-cyan-950 mr-5"></i>Companies</li>
-              <li className='md:py-4 py-2 hover:bg-gray-200 sm:pl-10 pl-5 cursor-pointer'><i class="fa-solid fa-graduation-cap text-cyan-950 mr-5"></i>Student</li>
+              <li className='md:py-4 py-2 hover:bg-gray-200 sm:pl-10 pl-5 cursor-pointer'><i class="fa-solid fa-building text-cyan-950 mr-5"></i><Link to='/companyinfo'>Companies</Link></li>
+              <li className='md:py-4 py-2 hover:bg-gray-200 sm:pl-10 pl-5 cursor-pointer'><i class="fa-solid fa-graduation-cap text-cyan-950 mr-5"></i><Link to='/studentinfo'>Students</Link></li>
               <li className='md:py-4 py-2 hover:bg-gray-200 sm:pl-10 pl-5 cursor-pointer'><i class="fa-regular fa-address-card text-cyan-950 mr-5"></i><Link to='/company'>Company Registration</Link></li>
               <li className='md:py-4 py-2 hover:bg-gray-200 sm:pl-10 pl-5 cursor-pointer'><i class="fa-solid fa-id-card text-cyan-950 mr-5"></i><Link to='/company'>Student Registration</Link></li>
               <li className='md:py-4 py-2 hover:bg-gray-200 sm:pl-10 pl-5 cursor-pointer'><i class="fa-solid fa-lock text-cyan-950 mr-5"></i><Link to='/changePass'>Change Password</Link></li>
@@ -56,7 +55,7 @@ export default function ChangePassword(props) {
                 <h1 className='text-cyan-950 sm:text-4xl text-2xl font-bold mb-10 '>Change Password</h1>
                 <div>
                 <label htmlFor="oldPass" className='sm:text-xl  font-semibold mr-2'>Enter Old Password </label>
-                <input type="password" name='password' placeholder='' className='xl:w-[50%] sm:w-[99%] w-[90%]  lg:y-4  py-2 rounded border-2 mb-2 '/>
+                <input type="password" name='password' placeholder='' className='xl:w-[50%] sm:w-[99%] w-[90%]  lg:py-4  py-2 rounded border-2 mb-2 '/>
                 </div>
 
                 <div className=''>
@@ -75,6 +74,6 @@ export default function ChangePassword(props) {
         </div>
       </div>
     </div>
-    // </BrowserRouter>
+  
   )
 }

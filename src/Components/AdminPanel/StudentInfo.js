@@ -4,7 +4,7 @@ import img2 from '../Images/img2.png';
 import { Link } from 'react-router-dom';
 
 
-export default function CompanyInfo(props) {
+export default function StudentInfo(props) {
     const [menuOpen, setMenuOpen] = useState(false);
 
     const toggleMenu = () => {
@@ -51,30 +51,8 @@ export default function CompanyInfo(props) {
             {/* password change */}
           <div className={`xl:w-[80%] lg:w-[70%] md:w-[65%] w-[100%] h-[100vh] bg-gray-100 pt-20  ${menuOpen ? 'hidden' : 'block'}`}>
             
-            <div className=' sm:w-[80%] w-[100%] ml-5 max-sm:flex max-sm:flex-col max-sm:items-center max-sm:mx-3'>
-                <h1 className='text-cyan-950 sm:text-4xl text-2xl font-bold mb-10 text-center'>Company Details</h1>
-
-                <div>
-                    <table className='font-extralight w-[100%]'>
-                        <thead className='lg:text-xl sm:text-sm text-sm'>
-                            <th className='border-b-[1px] border-r-[1px] border-cyan-600 xl:px-4 pb-8'>S.No</th>
-                            <th className='border-b-[1px] border-r-[1px] border-cyan-600 xl:px-10 lg:px-8 md:px-6 sm:px-4 pb-8'>Company Name</th>
-                            <th className='border-b-[1px] border-r-[1px] border-cyan-600 xl:px-10 lg:px-8 md:px-6 sm:px-4 pb-8'>Contact No</th>
-                            <th className='border-b-[1px] border-r-[1px] border-cyan-600 xl:px-10 lg:px-8 md:px-6 sm:px-4 pb-8'>Email</th>
-                            <th className='border-b-[1px]  border-cyan-600 xl:px-10 lg:px-8 md:px-6 sm:px-4 pb-8'>Action</th>
-                        </thead>
-
-                        
-                            <tr className='lg:text-base sm:text-sm text-xs'>
-                                <th className='border-b-[1px] border-r-[1px] border-cyan-600 py-4 xl:px-10 lg:px-8 md:px-6 sm:px-4'>01</th>
-                                <th className='border-b-[1px] border-r-[1px] border-cyan-600 py-4 xl:px-10 lg:px-8 md:px-6 sm:px-4'>InApp Solution</th>
-                                <th className='border-b-[1px] border-r-[1px] border-cyan-600 py-4 xl:px-10 lg:px-8 md:px-6 sm:px-4'>0334-3586859</th>
-                                <th className='border-b-[1px] border-r-[1px] border-cyan-600 py-4 xl:px-10 lg:px-8 md:px-6 sm:px-4'>abc@gmail.com</th>
-                                <th className='border-b-[1px]  border-cyan-600 py-4 xl:px-10 lg:px-8 md:px-6 sm:px-4 text-cyan-500 hover:text-cyan-300'><Link to={'/details'}>Details</Link></th>
-                            </tr>
-                        
-                    </table>
-                </div>
+            <div className=' sm:w-[60%] w-[100%] mx-auto max-sm:flex max-sm:flex-col max-sm:items-center max-sm:mx-3'>
+                
                
             </div>
         

@@ -8,6 +8,8 @@ import AdminSignup from './Components/Signup/AdminSignup';
 import Dashboard from './Components/AdminPanel/Dashboard';
 import ChangePassword from './Components/AdminPanel/ChangePassword';
 import AllInfo from './Components/AdminPanel/AllInfo';
+import Company from './Components/AdminPanel/Company';
+import StudentInfo from './Components/AdminPanel/StudentInfo';
 
 export default function App() {
   return (
@@ -22,6 +24,8 @@ export default function App() {
           <Route path="/admin-panel" element={<Dashboard />} />
           <Route path="/allinfo" element={<AllInfo />} />
           <Route path='/changepass' element = {<ChangePassword/>}/>
+          <Route path='/companyinfo' element = {<Company/>}/>
+          <Route path='/studentinfo' element = {<StudentInfo/>}/>
           
           {/* <Route path="/admin-panel" element={<PrivateRoute element={<Dashboard />} />} /> */}
         </Routes>
