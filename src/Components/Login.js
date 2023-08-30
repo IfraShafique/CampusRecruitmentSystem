@@ -7,6 +7,7 @@ export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
+  const [errorMessage, setErrorMessage] = useState("");
   // const { login } = useAuth(); 
 
   const handleEmailChange = (e) => {
@@ -40,7 +41,8 @@ export default function Login() {
     }
     
     else {
-          return "Incorrect email or password";
+    
+          setErrorMessage( "Invalid email or password");
     }
   };
 
@@ -105,6 +107,7 @@ export default function Login() {
               {/* Back button */}
               <div className="mt-3 ml-1 max-sm:text-sm">
                 <button><i className="fa-solid fa-arrow-left text-white sm:text-sm text-xs sm:mr-1  "></i> <Link to='/'>Back to Home</Link></button>
+                <p className="text-red-700 text-xl font-semibold">{errorMessage}</p>
               </div>
             </div>
           </div>

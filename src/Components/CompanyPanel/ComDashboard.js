@@ -52,9 +52,7 @@ export default function ComDashboard() {
               <li className='lg:w-[50%] xl:w-[50%] w-[90%] h-[25vh] xl:h-[20vh] bg-white pt-8 text-black'>Total Applicants
                 <p  className='sm:pt-3 text-3xl'>10</p>
               </li>
-              {/* <li className='lg:w-[30%] xl:w-[30%] w-[90%] h-[25vh] xl:h-[20vh] bg-cyan-700 pt-8'>Total Vacancy
-                <p  className='sm:pt-3 text-3xl'>12</p>
-              </li> */}
+             
             </ul>
           </div>
         </div>
