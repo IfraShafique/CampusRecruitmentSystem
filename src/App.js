@@ -15,6 +15,10 @@ import StudentReg from './Components/AdminPanel/StudentReg';
 import StuDashboard from './Components/StudentPanel/StuDashboard';
 import StudentProfile from './Components/StudentPanel/StudentProfile';
 import StuChangePass from './Components/StudentPanel/StuChangePass';
+import ComDashboard from './Components/CompanyPanel/ComDashboard';
+import PostJob from './Components/CompanyPanel/PostJob';
+import StudentList from './Components/CompanyPanel/StudentList';
+import ComChangePass from './Components/CompanyPanel/ComChangePass';
 
 
 
@@ -42,6 +46,10 @@ export default function App() {
           <Route path='/student-panel' element = {<StuDashboard/>}/>
           <Route path='/stuprofile' element = {<StudentProfile/>}/>
           <Route path='/stuchangepass' element = {<StuChangePass/>}/>
+          <Route path='/company-panel' element = {<ComDashboard/>}/>
+          <Route path='/post-job' element = {<PostJob/>}/>
+          <Route path='/student-list' element = {<StudentList/>}/>
+          <Route path='/comchangePass' element = {<ComChangePass/>}/>
 
           
          
