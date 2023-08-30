@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import img2 from '../Images/img2.png';
 import { Link } from 'react-router-dom';
 import AllInfo from './AllInfo';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import ChangePassword from './ChangePassword';
+import AdminMenu from './AdminMenu';
+
 
 export default function Dashboard() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -35,26 +35,13 @@ export default function Dashboard() {
           <i class="fa-solid fa-user text-cyan-950 md:text-8xl text-4xl"></i>
         </div>
 
-        <ul className='max-md:text-sm'>
-              <li className='md:py-4 py-2 hover:bg-gray-200 sm:pl-10 pl-5 cursor-pointer'><i class="fa-solid fa-gauge text-cyan-950 mr-5"></i><Link to='/admin-panel'>Dashboard</Link></li>
-              <li className='md:py-4 py-2 hover:bg-gray-200 sm:pl-10 pl-5 cursor-pointer'><i class="fa-solid fa-building text-cyan-950 mr-5"></i><Link to='/companyinfo'>Companies</Link></li>
-              <li className='md:py-4 py-2 hover:bg-gray-200 sm:pl-10 pl-5 cursor-pointer'><i class="fa-solid fa-graduation-cap text-cyan-950 mr-5"></i><Link to='/studentinfo'>Students</Link></li>
-              <li className='md:py-4 py-2 hover:bg-gray-200 sm:pl-10 pl-5 cursor-pointer'><i class="fa-solid fa-handshake text-cyan-950 mr-5"></i><Link to='/vacancy'>Vacancies</Link></li>
-              <li className='md:py-4 py-2 hover:bg-gray-200 sm:pl-10 pl-5 cursor-pointer'><i class="fa-regular fa-address-card text-cyan-950 mr-5"></i><Link to='/company'>Company Registration</Link></li>
-              <li className='md:py-4 py-2 hover:bg-gray-200 sm:pl-10 pl-5 cursor-pointer'><i class="fa-solid fa-id-card text-cyan-950 mr-5"></i><Link to='/company'>Student Registration</Link></li>
-              <li className='md:py-4 py-2 hover:bg-gray-200 sm:pl-10 pl-5 cursor-pointer'><i class="fa-solid fa-lock text-cyan-950 mr-5"></i><Link to='/changePass'>Change Password</Link></li>
-              <li className='md:py-4 py-2 hover:bg-gray-200 sm:pl-10 pl-5 cursor-pointer'><i class="fa-solid fa-right-to-bracket text-cyan-950 mr-5"></i><Link to='/login'>Logout</Link></li>
-            </ul>
+        <AdminMenu/>
         </div>
 
  
         {/* Details */}
         <div className={`xl:w-[80%] lg:w-[70%] md:w-[65%] w-[100%] h-[100vh] bg-gray-100 ${menuOpen ? 'hidden' : 'block'}`}>
-        {/* <Routes>
-          <Route path='/dashboard' element = {<AllInfo/>}/>
-          <Route path='/changepass' element = {<ChangePassword/>}/>
-        </Routes> */}
-        <AllInfo/>
+          <AllInfo/>
         
         
        

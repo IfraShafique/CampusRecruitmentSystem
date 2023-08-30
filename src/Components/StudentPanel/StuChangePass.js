@@ -1,9 +1,8 @@
-
 import React, { useState } from 'react';
 import img2 from '../Images/img2.png';
 import { Link } from 'react-router-dom';
-import AdminMenu from './AdminMenu';
-
+import Title from "./Title";
+import Menu from "./Menu";
 
 export default function ChangePassword(props) {
     const [menuOpen, setMenuOpen] = useState(false);
@@ -22,9 +21,7 @@ export default function ChangePassword(props) {
           </button>
         </div>
         {/* title */}
-        <div className='text-center'>
-        <h1 className='flex items-center justify-center bg-cyan-950 text-white sm:text-4xl text-2xl text-center font-semibold py-3 max-sm:-ml-10'><span className=''><img src={img2} alt="logo" className='w-[8rem]' /></span>Admin Dashboard</h1>
-        </div>
+        <Title/>
         
         {/* Content */}
         <div className='flex '>
@@ -36,7 +33,7 @@ export default function ChangePassword(props) {
             <i class="fa-solid fa-user text-cyan-950 md:text-8xl text-4xl"></i>
           </div>
   
-          <AdminMenu/>
+          <Menu/>
           </div>
   
 

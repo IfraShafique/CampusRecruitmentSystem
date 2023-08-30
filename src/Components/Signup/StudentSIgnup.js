@@ -64,8 +64,8 @@ export default function StudentSignup() {
         </div>
       ))}
       <div className="mt-3">
-      <label htmlFor="Upload Resume" className=""> Upload Resume</label><br/>
-      <input type="file" className="my-2 " required/>
+        <label htmlFor="Upload Resume" className=""> Upload Resume</label><br/>
+        <input type="file" className="my-2 " required/>
       </div>
     </form>
 

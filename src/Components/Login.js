@@ -23,11 +23,23 @@ export default function Login() {
     const defaultAdminEmail = "admin";
     const defaultAdminPassword = "admin";
   
-    if (email === defaultAdminEmail && password === defaultAdminPassword) {
+    if (email === "admin" && password === "admin" ) {
       // Call the login function with the appropriate role
       // login("admin"); // Make sure this function is being called
       navigate('/admin-panel');
-    } else {
+    }
+    else if (email === "student" && password === "student" ) {
+      // Call the login function with the appropriate role
+      // login("admin"); // Make sure this function is being called
+      navigate('/student-panel');
+    }
+    else if (email === "company" && password === "company" ) {
+      // Call the login function with the appropriate role
+      // login("admin"); // Make sure this function is being called
+      navigate('/company-panel');
+    }
+    
+    else {
           return "Incorrect email or password";
     }
   };

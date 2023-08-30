@@ -11,6 +11,12 @@ import AllInfo from './Components/AdminPanel/AllInfo';
 import Company from './Components/AdminPanel/Company';
 import StudentInfo from './Components/AdminPanel/StudentInfo';
 import Vacancies from './Components/AdminPanel/Vacancies';
+import StudentReg from './Components/AdminPanel/StudentReg';
+import StuDashboard from './Components/StudentPanel/StuDashboard';
+import StudentProfile from './Components/StudentPanel/StudentProfile';
+import StuChangePass from './Components/StudentPanel/StuChangePass';
+
+
 
 export default function App() {
   return (
@@ -21,6 +27,8 @@ export default function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/student" element={<StudentSignup />} />
           <Route path="/company" element={<CompanySignup />} />
+
+          {/* Admin Panel */}
           <Route path="/admin" element={<AdminSignup />} />
           <Route path="/admin-panel" element={<Dashboard />} />
           <Route path="/allinfo" element={<AllInfo />} />
@@ -28,13 +36,17 @@ export default function App() {
           <Route path='/companyinfo' element = {<Company/>}/>
           <Route path='/studentinfo' element = {<StudentInfo/>}/>
           <Route path='/vacancy' element = {<Vacancies/>}/>
+          <Route path='/studentreg' element = {<StudentReg/>}/>
+
+          {/* Student Panel */}
+          <Route path='/student-panel' element = {<StuDashboard/>}/>
+          <Route path='/stuprofile' element = {<StudentProfile/>}/>
+          <Route path='/stuchangepass' element = {<StuChangePass/>}/>
+
           
-          {/* <Route path="/admin-panel" element={<PrivateRoute element={<Dashboard />} />} /> */}
+         
         </Routes>
-{/* 
-        <Routes>
-          
-        </Routes> */}
+
 
     </BrowserRouter>
   );
