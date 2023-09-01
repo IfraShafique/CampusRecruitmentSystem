@@ -82,7 +82,7 @@ export default function PostJob(props) {
                 type={field.type}
                 value={field.value}
                 placeholder={field.name}
-                className="2xl:w-[60%] xl:w-[55%] lg:w-[80%] py-2 sm:py-3 px-8 rounded sm:rounded-[10px] max-sm:mx-2 my-1 text-black"
+                className="2xl:w-[60%] xl:w-[55%] lg:w-[80%]  py-2 sm:py-3 px-8 rounded sm:rounded-[10px] max-sm:mx-3 my-1 text-black"
                 onChange={(e) => handleFieldChange(index, e.target.value)}
             />
 

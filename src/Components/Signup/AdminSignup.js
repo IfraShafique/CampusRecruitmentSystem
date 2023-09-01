@@ -4,12 +4,12 @@ import { Link } from 'react-router-dom';
 
 export default function AdminSignup() {
   const initialFields = [
-    { name: 'Employee ID:',type:"text", id:'emp-id', value: '' },
+    { name: 'AdminID:',type:"text", id:'emp-id', value: '' },
     { name: 'Name:',type:"text",  id:'name', value: '' },
     { name: 'Email:',type:"email", id:'email', value: '' },
-    { name: 'Contact No:',type:"text", id:'contact', value: '' },
+    { name: 'ContactNo:',type:"text", id:'contact', value: '' },
     { name: 'Password:',type:"password", id:'password', value: '' },
-    { name: 'Confirm Password:',type:"password", id:'confirmPassword', value: '' },
+    { name: 'ConfirmPassword:',type:"password", id:'confirmPassword', value: '' },
     
     // Add more fields as needed
   ];

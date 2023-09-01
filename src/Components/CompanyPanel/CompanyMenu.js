@@ -14,7 +14,7 @@ export default function CompanyMenu() {
           <Link to="/post-job">Post a Job</Link>
         </li>
         <li className="md:py-4 py-2 hover:bg-gray-200 sm:pl-10 pl-5 cursor-pointer">
-          <i className="fa-solid fa-handshake text-cyan-950 mr-5"></i>
+        <i class="fa-solid fa-graduation-cap text-cyan-950 mr-5"></i>
           <Link to="/student-list">List of Students</Link>
         </li>
         <li className="md:py-4 py-2 hover:bg-gray-200 sm:pl-10 pl-5 cursor-pointer">

@@ -4,19 +4,23 @@ import { Link, useNavigate } from 'react-router-dom';
 // import { useAuth } from './AuthContext';
 
 export default function Login() {
+  const [LoginID, setLoginID] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
   const [errorMessage, setErrorMessage] = useState("");
   // const { login } = useAuth(); 
 
-  const handleEmailChange = (e) => {
-    setEmail(e.target.value);
+  const handleLoginChange = (e) => {
+    setLoginID(e.target.value);
   };
 
   const handlePasswordChange = (e) => {
     setPassword(e.target.value);
   };
+
+
+  
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -75,7 +79,7 @@ export default function Login() {
                 required
                 autoComplete="username"
                 className="2xl:w-[50%] xl:w-[55%] lg:w-[80%] py-2 sm:py-3 px-8 rounded sm:rounded-[10px] max-sm:mx-2"
-                onChange={handleEmailChange}
+                onChange={handleLoginChange}
               />
             </div>
 
