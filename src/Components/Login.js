@@ -79,7 +79,7 @@ export default function Login() {
                 required
                 autoComplete="username"
                 className="2xl:w-[50%] xl:w-[55%] lg:w-[80%] py-2 sm:py-3 px-8 rounded sm:rounded-[10px] max-sm:mx-2"
-                onChange={handleLoginChange}
+                onChange={handleLogin}
               />
             </div>
 
