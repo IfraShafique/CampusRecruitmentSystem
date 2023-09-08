@@ -92,7 +92,7 @@ export default function CompanySignup() {
     
     // Use formData directly for the axios post request
     axios
-    .post("http://localhost:4000/company", formData)
+    .post(process.env.REACT_APP_COMPANYREGISTRATION_URI, formData)
     .then((result) => {
       console.log("MyCompanyRegistration", result.data);
       setInfoMessage("Successfully Registered"); // You can show a success message

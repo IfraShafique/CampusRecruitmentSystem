@@ -12,9 +12,9 @@ export default function StudentProfile() {
     const [infoMessage, setInfoMessage] = useState("");
     const [allImage, setAllImage] = useState("");
     
-    useEffect(()=> {
-      getImage();
-    }, []);
+    // useEffect(()=> {
+    //   getImage();
+    // }, []);
 
     const initialFormState = {
       Name: "",
@@ -43,6 +43,44 @@ export default function StudentProfile() {
 
     const handleSubmit = (event) => {
       event.preventDefault();
+
+      const requiredFields = [
+        "Name",
+        "ContactNo",
+        "Address",
+        "Email",
+        "Department",
+        "CurrentSemester",
+        "CGPA",
+        "Skills",
+      ];
+    
+        const isAnyFieldEmpty = requiredFields.some(
+          (fieldName) => !formData[fieldName]
+        );
+      
+        if (isAnyFieldEmpty) {
+          setErrorMessage("No field should be empty");
+          return; // Prevent form submission if any field is empty
+        }
+    
+        else if (!/^\d{11}$/.test(formData.ContactNo)){
+          setErrorMessage("Contact no should have exactly 11 digits");
+          setInfoMessage("");
+          return;
+        }
+
+        else if(formData.CurrentSemester > 8 || formData.CurrentSemester === 8 ){
+          setErrorMessage("Semester should be less than or equal to 8");
+          setInfoMessage("");
+          return;
+        }
+
+        else if(formData.CGPA > 4 || formData.CGPA === 4 ) {
+          setErrorMessage("CGPA should not be greater than 4");
+          setInfoMessage("");
+          return;
+        }
     
       // Create a FormData object to send the file along with other form data
       const formDataToSend = new FormData();
@@ -54,9 +92,12 @@ export default function StudentProfile() {
           formDataToSend.append(key, formData[key]);
         }
       }
+
+      setErrorMessage("");
+      setInfoMessage("");
     
       axios
-        .post("http://localhost:4000/stuprofile", 
+        .post(process.env.REACT_APP_STUDENTPROFILE_URI, 
         formDataToSend, {
           headers : {"Content-Type" : "multipart/form-data"}
         })
@@ -72,11 +113,11 @@ export default function StudentProfile() {
     };
 
     // Get Image
-    const getImage = async()=> {
-      const result = await axios.get("http://localhost:4000/get-image");
-      console.log(result);
-      setAllImage(result.data.data);
-    }
+    // const getImage = async()=> {
+    //   const result = await axios.get("http://localhost:4000/get-image");
+    //   console.log(result);
+    //   setAllImage(result.data.data);
+    // }
     
     const initialFields = [
       { name: 'Name', type: "text" },
@@ -124,7 +165,7 @@ export default function StudentProfile() {
           <h1 className="lg:text-5xl sm:text-3xl  text-2xl font-bold  max-sm:text-center mb-10">Profile Details</h1>
           <p className="sm:w-[70%] mb-6 max-sm:mx-10"> <span className="font-bold text-xl">Note:</span> Please ensure that you enter your information correctly during signup, as changes cannot be made afterward.</p>
         </div>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} >
             {initialFields.map((field, index) => (
                 <div key={index}>
                   <input
@@ -139,7 +180,7 @@ export default function StudentProfile() {
 
             <div className="mt-3">
               <label htmlFor="Upload Resume" className=""> Upload Resume</label><br/>
-              <input type="file" className="my-2 " required onChange={(e) => setResume(e.target.files[0])}/>
+              <input type="file" name="resume" className="my-2 " required onChange={(e) => setResume(e.target.files[0])}/>
             </div>
 
             <div className="my-3 text-white max-sm:mx-2">

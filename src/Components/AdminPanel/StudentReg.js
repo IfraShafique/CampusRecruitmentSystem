@@ -4,11 +4,17 @@ import img3 from "../Images/logoBlack.png";
 import { Link } from 'react-router-dom';
 import AdminMenu from "./AdminMenu";
 import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
+import { updateField, setError, setInfo, resetForm } from "../../Redux/Reducer";
 
-export default function CompanySignup() {
+export default function StudentReg() {
+  const dispatch = useDispatch();
+  const formData = useSelector((state) => state.studentRegistration.formData);
   const [menuOpen, setMenuOpen] = useState(false);
-  const [errorMessage, setErrorMessage] = useState("");
-  const [infoMessage, setInfoMessage] = useState("");
+  // const [errorMessage, setErrorMessage] = useState("");
+  // const [infoMessage, setInfoMessage] = useState("");
+  const errorMessage = useSelector((state) => state.studentRegistration.errorMessage);
+  const infoMessage = useSelector((state) => state.studentRegistration.infoMessage);
 
   const initialFormState = {
     StudentID: "",
@@ -18,7 +24,7 @@ export default function CompanySignup() {
     ConfirmPassword: "",
   };
 
-  const [formData, setFormData] = useState(initialFormState);
+  // const [formData, setFormData] = useState(initialFormState);
 
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
@@ -40,48 +46,49 @@ export default function CompanySignup() {
     );
   
     if (isAnyFieldEmpty) {
-      setErrorMessage("No field should be empty");
+      dispatch(setError('No field should be empty'));
       return; // Prevent form submission if any field is empty
     }
 
     else if (formData.Password.length < 6) {
-      setErrorMessage("Password should be at least 6 characters long");
-      setInfoMessage(""); // Clear the success message
+      dispatch(setError("Password should be at least 6 characters long"));
+      dispatch(setInfo("")); // Clear the success message
       return; // Prevent form submission if the password is too short
     }
 
     else if (!/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@#$%&!?])[A-Za-z\d@#$%&!?]+$/.test(formData.Password)){
-      setErrorMessage("Password should contain at least one letter, one number, and one special character");
-      setInfoMessage("");
+      dispatch(setError("Password should contain at least one letter, one number, and one special character"));
+      dispatch(setInfo(""));
       return;
     }
 
     else if (formData.Password !== formData.ConfirmPassword) {
-      setErrorMessage("Password and Confirm Password do not match");
+      dispatch(setError("Password and Confirm Password do not match"));
       return; // Prevent form submission if they don't match
     }
 
-    setErrorMessage("");
-    setInfoMessage("");
+    dispatch(setError(""));
+    dispatch(setInfo(""));
 
     axios
-    .post("http://localhost:4000/studentreg", formData)
+    .post(process.env.REACT_APP_STUDENTREGISTRATION_URI, formData)
     .then((result) => {
       console.log("StudentRegistration", result.data);
-      setInfoMessage("Successfully Registered"); // You can show a success message
+      dispatch(setInfo("Successfully Registered")); // You can show a success message
       // Reset form fields to their initial empty state
-        setFormData(initialFormState);
+        dispatch(resetForm());
         
       })
       .catch((err) => {
         console.log(err);
-        setErrorMessage("Registration Failed"); // You can show an error message
+        dispatch(setError("Registration Failed")); // You can show an error message
       });
   };
   
   const handleFieldChange = (fieldName, value) => {
     // Update the form data with the new value
-    setFormData({ ...formData, [fieldName]: value });
+    // setFormData({ ...formData, [fieldName]: value });
+    dispatch(updateField({fieldName, value}))
   };
 
 
@@ -158,8 +165,10 @@ const initialFields = [
               <button><i className="fa-solid fa-arrow-left text-black sm:text-sm text-xs fon-semibold sm:mr-1  "></i> <Link to='/admin-panel' className="font-semibold">Back to Dashboard</Link></button>
             </div>
 
+            <div className="message-container">
               <h1 className="text-red-700 font-semibold mt-2">{errorMessage}</h1>
               <h1 className="text-green-600 font-semibold mt-2">{infoMessage}</h1>
+  </div>
           </div>
     </div>
         
