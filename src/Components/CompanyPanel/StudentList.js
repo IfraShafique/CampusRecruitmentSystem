@@ -1,9 +1,22 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Title from "./CompanyTitle";
 import Menu from "./CompanyMenu";
+import axios from 'axios'
 
 export default function StudentList() {
     const [menuOpen, setMenuOpen] = useState(false);
+    const [stuProfiles, setStuProfile] = useState([])
+    
+  useEffect(() => {
+    // Make a GET request to fetch company data
+    axios.get('http://localhost:4000/get-studentProfileData')
+      .then((response) => {
+        setStuProfile(response.data.data);
+      })
+      .catch((error) => {
+        console.error('Error fetching company data:', error);
+      });
+  }, []);
 
     const toggleMenu = () => {
       setMenuOpen(!menuOpen);
@@ -46,24 +59,27 @@ export default function StudentList() {
                     <table className=' text-cyan-950 xl:w-[70%] w-[100%] list-none'>
                         <thead>
                         <tr className='lg:text-2xl sm:text-base text-xl font-bold '>
-                            <td className='w-[20%]'>S No.</td>
+                            {/* <td className='w-[20%]'>S No.</td> */}
                             <td className='w-[65%] px-3'>Student Name</td>
                             <td className='w-[15%]'>Resume</td>
                         </tr>
                         </thead><br/>
 
                         <tbody className='pt-5'>
+                          {stuProfiles.map((stuProfile) => (
                             <tr className='  '>
-                                <td>1</td>
-                                <td className='px-3'>Ifra Shafique Ahmed Siddiqui</td>
-                                <td className='cursor-pointer hover:text-cyan-600'>Resume</td>
+                                {/* <td>1</td> */}
+                                <td className='px-3'>{stuProfile.Name}</td>
+                                <td className='cursor-pointer hover:text-cyan-600'>
+                                <a href={stuProfile.resumePath} target="_blank" rel="noopener noreferrer"><i className="fas fa-file-pdf text-cyan-900 text-2xl"></i></a></td>
                             </tr>
+                          ))}
 
-                            <tr className=' '>
+                            {/* <tr className=' '>
                                 <td>2</td>
                                 <td className='px-3'>Muzna</td>
                                 <td className='cursor-pointer hover:text-cyan-600'>Resume</td>                     
-                            </tr>
+                            </tr> */}
                         </tbody>
                         
                         

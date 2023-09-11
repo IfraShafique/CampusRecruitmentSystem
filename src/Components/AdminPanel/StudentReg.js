@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import AdminMenu from "./AdminMenu";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
-import { updateField, setError, setInfo, resetForm } from "../../Redux/Reducer";
+import { updateField, setError, setInfo, resetForm, submitForm } from "../../Redux/Reducer/studentRegistrationSlice";
 
 export default function StudentReg() {
   const dispatch = useDispatch();
@@ -16,13 +16,13 @@ export default function StudentReg() {
   const errorMessage = useSelector((state) => state.studentRegistration.errorMessage);
   const infoMessage = useSelector((state) => state.studentRegistration.infoMessage);
 
-  const initialFormState = {
-    StudentID: "",
-    StudentName: "",
-    Email: "",
-    Password: "",
-    ConfirmPassword: "",
-  };
+  // const initialFormState = {
+  //   StudentID: "",
+  //   StudentName: "",
+  //   Email: "",
+  //   Password: "",
+  //   ConfirmPassword: "",
+  // };
 
   // const [formData, setFormData] = useState(initialFormState);
 
@@ -69,25 +69,27 @@ export default function StudentReg() {
 
     dispatch(setError(""));
     dispatch(setInfo(""));
+    
+    // Post Function
+    dispatch(submitForm(formData));
+    dispatch(setInfo("Successfully Registered"));
 
-    axios
-    .post(process.env.REACT_APP_STUDENTREGISTRATION_URI, formData)
-    .then((result) => {
-      console.log("StudentRegistration", result.data);
-      dispatch(setInfo("Successfully Registered")); // You can show a success message
-      // Reset form fields to their initial empty state
-        dispatch(resetForm());
+    // axios
+    // .post(process.env.REACT_APP_STUDENTREGISTRATION_URI, formData)
+    // .then((result) => {
+    //   console.log("StudentRegistration", result.data);
+    //   dispatch(setInfo("Successfully Registered")); // You can show a success message
+    //   // Reset form fields to their initial empty state
+    //     dispatch(resetForm());
         
-      })
-      .catch((err) => {
-        console.log(err);
-        dispatch(setError("Registration Failed")); // You can show an error message
-      });
+    //   })
+    //   .catch((err) => {
+    //     console.log(err);
+    //     dispatch(setError("Registration Failed")); // You can show an error message
+    //   });
   };
   
   const handleFieldChange = (fieldName, value) => {
-    // Update the form data with the new value
-    // setFormData({ ...formData, [fieldName]: value });
     dispatch(updateField({fieldName, value}))
   };
 
@@ -166,9 +168,9 @@ const initialFields = [
             </div>
 
             <div className="message-container">
-              <h1 className="text-red-700 font-semibold mt-2">{errorMessage}</h1>
-              <h1 className="text-green-600 font-semibold mt-2">{infoMessage}</h1>
-  </div>
+                <h1 className="text-red-700 font-semibold mt-2">{errorMessage}</h1>
+                <h1 className="text-green-600 font-semibold mt-2">{infoMessage}</h1>
+              </div>
           </div>
     </div>
         

@@ -3,28 +3,35 @@ import img2 from "../Images/img2.png";
 import img3 from "../Images/logoBlack.png";
 import { Link } from "react-router-dom";
 import AdminMenu from "../AdminPanel/AdminMenu";
-import axios from "axios";
+import {  setError, setInfo} from "../../Redux/Reducer/studentRegistrationSlice";
+import { submitForm, resetForm, updateField } from "../../Redux/Reducer/companyRegistrationSlice";
+import { useDispatch, useSelector } from "react-redux";
 
 export default function CompanySignup() {
+  const dispatch = useDispatch();
+  const formData = useSelector((state) => state.companyRegistration.formData);
+  const errorMessage = useSelector((state) => state.studentRegistration.errorMessage);
+  const infoMessage = useSelector((state) => state.studentRegistration.infoMessage);
+
   const [menuOpen, setMenuOpen] = useState(false);
-  const [errorMessage, setErrorMessage] = useState("");
-  const [infoMessage, setInfoMessage] = useState("");
+  // const [errorMessage, setErrorMessage] = useState("");
+  // const [infoMessage, setInfoMessage] = useState("");
 
   // Define the initial state for your form fields
-  const initialFormState = {
-    LoginID: "",
-    CompanyName: "",
-    Industry: "",
-    HRName: "",
-    CompanyEmail: "",
-    ContactNo: "",
-    WebsiteLink: "",
-    AboutCompany: "",
-    Password: "",
-    ConfirmPassword: "",
-  };
+  // const initialFormState = {
+  //   LoginID: "",
+  //   CompanyName: "",
+  //   Industry: "",
+  //   HRName: "",
+  //   CompanyEmail: "",
+  //   ContactNo: "",
+  //   WebsiteLink: "",
+  //   AboutCompany: "",
+  //   Password: "",
+  //   ConfirmPassword: "",
+  // };
 
-  const [formData, setFormData] = useState(initialFormState);
+  // const [formData, setFormData] = useState(initialFormState);
 
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
@@ -52,64 +59,67 @@ export default function CompanySignup() {
     );
   
     if (isAnyFieldEmpty) {
-      setErrorMessage("No field should be empty");
+      dispatch(setError("No field should be empty"));
       return; // Prevent form submission if any field is empty
     }
 
     else if (!/^\d{11}$/.test(formData.ContactNo)){
-      setErrorMessage("Contact no should have exactly 11 digits");
-      setInfoMessage("");
+      dispatch(setError("Contact no should have exactly 11 digits"));
+      dispatch(setInfo(""));
       return;
     }
 
     else if(!/^www\..+\.com$/.test(formData.WebsiteLink)){
-      setErrorMessage("e.g www.example.com");
-      setInfoMessage("");
+      dispatch(setError("e.g www.example.com"));
+      dispatch(setInfo(""));
       return;
     }
         else if (formData.Password.length < 6) {
-          setErrorMessage("Password should be at least 6 characters long");
-          setInfoMessage(""); // Clear the success message
+          dispatch(setError("Password should be at least 6 characters long"));
+          dispatch(setInfo("")); // Clear the success message
           return; // Prevent form submission if the password is too short
         }
     
         else if (!/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@#$%&!?])[A-Za-z\d@#$%&!?]+$/.test(formData.Password)){
-          setErrorMessage("Password should contain at least one letter, one number, and one special character");
-          setInfoMessage("");
+          dispatch(setError("Password should contain at least one letter, one number, and one special character"));
+          dispatch(setInfo(""));
           return;
         }
 
       else if (formData.Password !== formData.ConfirmPassword) {
-        setErrorMessage("Password and Confirm Password do not match");
+        dispatch(setError("Password and Confirm Password do not match"));
         return; // Prevent form submission if they don't match
       }
 
 
-    setErrorMessage("");
-    setInfoMessage("");
-    
-    console.log("Form Data:", formData);
+      dispatch(setError(""));
+    dispatch(setInfo(""));
+  
     
     // Use formData directly for the axios post request
-    axios
-    .post(process.env.REACT_APP_COMPANYREGISTRATION_URI, formData)
-    .then((result) => {
-      console.log("MyCompanyRegistration", result.data);
-      setInfoMessage("Successfully Registered"); // You can show a success message
-      // Reset form fields to their initial empty state
-        setFormData(initialFormState);
+    dispatch(submitForm(formData))
+    dispatch(setInfo("Successfully Registered"));
+    dispatch(resetForm())
+    // axios
+    // .post(process.env.REACT_APP_COMPANYREGISTRATION_URI, formData)
+    // .then((result) => {
+    //   console.log("MyCompanyRegistration", result.data);
+    //   setInfoMessage("Successfully Registered"); // You can show a success message
+    //   // Reset form fields to their initial empty state
+    //     setFormData(initialFormState);
         
-      })
-      .catch((err) => {
-        console.log(err);
-        setErrorMessage("Registration Failed"); // You can show an error message
-      });
+    //   })
+    //   .catch((err) => {
+    //     console.log(err);
+    //     setErrorMessage("Registration Failed"); // You can show an error message
+    //   });
   };
   
 
   const handleFieldChange = (fieldName, value) => {
     // Update the form data with the new value
-    setFormData({ ...formData, [fieldName]: value });
+    // setFormData({ ...formData, [fieldName]: value });
+    dispatch(updateField({fieldName, value}))
   };
 
   const initialFields = [

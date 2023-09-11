@@ -1,10 +1,23 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import img2 from "../Images/img2.png";
 import { Link } from "react-router-dom";
 import AdminMenu from "./AdminMenu";
+import axios from 'axios';
 
 export default function CompanyInfo(props) {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [companies, setCompanies] = useState([]);
+
+  useEffect(() => {
+    // Make a GET request to fetch company data
+    axios.get('http://localhost:4000/get-companies')
+      .then((response) => {
+        setCompanies(response.data.data);
+      })
+      .catch((error) => {
+        console.error('Error fetching company data:', error);
+      });
+  }, []);
 
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
@@ -60,7 +73,7 @@ export default function CompanyInfo(props) {
               <table className="font-extralight w-[100%]">
                 <thead className="lg:text-xl sm:text-sm text-[0.6rem] items-center">
                   <th className="border-b-[1px] border-r-[1px] border-cyan-600 w-[5%] pb-5">
-                    S.No
+                    ID
                   </th>
                   <th className="border-b-[1px] border-r-[1px] border-cyan-600 w-[25%] pb-5">
                     Company Name
@@ -77,41 +90,30 @@ export default function CompanyInfo(props) {
                 </thead>
 
                 <tbody className="font-[arial] font-thin lg:text-xl sm:text-sm text-[0.6rem] ">
-                  <tr className="lg:text-base sm:text-sm text-xs ">
+                  {companies.map((company) => (
+
+
+                  <tr className="lg:text-base sm:text-sm text-xs " key={company._id}>
                     <th className="border-b-[1px] border-r-[1px] border-cyan-600 py-4 w-[5%]">
-                      01
+                      {company.LoginID}
                     </th>
                     <th className="border-b-[1px] border-r-[1px] border-cyan-600 py-4 w-[25%]">
-                      InApp Solution
+                      {company.CompanyName}
                     </th>
                     <th className="border-b-[1px] border-r-[1px] border-cyan-600 py-4 w-[15%]">
-                      0334-3586859
+                      {company.ContactNo}
                     </th>
                     <th className="border-b-[1px] border-r-[1px] border-cyan-600 py-4 w-[15%]">
-                      abc@gmail.com
+                      {company.CompanyEmail}
                     </th>
                     <th className="border-b-[1px]  border-cyan-600 py-4 w-[8] text-cyan-500 hover:text-cyan-300">
                       <Link to={"/details"}>Details</Link>
                     </th>
                   </tr>
+                  ))
+                  }
 
-                  <tr className="lg:text-base sm:text-sm text-xs">
-                    <th className="border-b-[1px] border-r-[1px] border-cyan-600 py-4 w-[5%]">
-                      02
-                    </th>
-                    <th className="border-b-[1px] border-r-[1px] border-cyan-600 py-4 w-[25%]">
-                      Inciter Tech
-                    </th>
-                    <th className="border-b-[1px] border-r-[1px] border-cyan-600 py-4 w-[15%]">
-                      0334-3586859
-                    </th>
-                    <th className="border-b-[1px] border-r-[1px] border-cyan-600 py-4 w-[15%] ">
-                      xyz1fdfdg23@gmail.com
-                    </th>
-                    <th className="border-b-[1px]  border-cyan-600 py-4 w-[8%] text-cyan-500 hover:text-cyan-300">
-                      <Link to={"/details"}>Details</Link>
-                    </th>
-                  </tr>
+            
                 </tbody>
               </table>
             </div>

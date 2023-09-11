@@ -1,10 +1,41 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import img2 from "../Images/img2.png";
 import { Link } from "react-router-dom";
 import AdminMenu from "./AdminMenu";
+import axios from "axios";
 
 export default function StudentInfo(props) {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [posts, setPost] = useState([]);
+
+  useEffect(()=> {
+    axios.get('http://localhost:4000/get-Jobs')
+  .then((response) => {
+    setPost(response.data.data);
+    console.log(response.data.data);
+  })
+  .catch((error) => {
+    console.error('Error fetching post data:', error);
+    if (error.response) {
+      console.error('Response data:', error.response.data);
+      console.error('Response status:', error.response.status);
+    }
+  });
+
+  },[])
+  const deleteJob = (jobId) => {
+    axios
+      .delete(`http://localhost:4000/delete-job/${jobId}`)
+      .then((response) => {
+        // Handle the response (success or error)
+        console.log(response.data);
+        // Update the state to remove the deleted job from the list
+        setPost((prevPosts) => prevPosts.filter((post) => post._id !== jobId));
+      })
+      .catch((error) => {
+        console.error("Error deleting job:", error);
+      });
+  };
 
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
@@ -58,42 +89,24 @@ export default function StudentInfo(props) {
 
             <div>
               <ul className="sm:w-[98%] w-[100%] sm:ml-5 mx-auto text-white ">
+                 {posts.map((post) => (
 
-                <li className="bg-cyan-800 rounded sm:px-5 px-3 py-5 cursor-pointer my-3">
-                  <h1 className="sm:text-2xl text-xl font-bold">Frondend Developer</h1>
-                  <p>BrandSoft Solution</p>
-                  <p><i class="fa-solid fa-briefcase text-white mr-4"></i>Full Time </p>
+                <li className="bg-cyan-800 rounded sm:px-5 px-3 py-5 cursor-pointer my-3"  key={post._id}>
+                  <h1 className="sm:text-2xl text-xl font-bold">{post.JobTitle}</h1>
+                  <p>{post.Company}</p>
+                  <p><i class="fa-solid fa-briefcase text-white mr-4"></i>{post.JobType} </p>
                   <p>
                     <i class="fa-solid fa-location-dot text-white mr-5"></i>
-                    Karachi <span className="ml-[5%] font-semibold sm:text-[1.1rem]">Salary 50,000 to 70,000</span>
+                    {post.Location} <span className="ml-[5%] font-semibold sm:text-[1.1rem]">Salary {post.Salary}</span>
                   </p>
                   <p className="my-2">
-                    Fresh Graduate (Bachelor/Master in Computer Science or
-                    related technical field) for job training and assisting in
-                    Frontend Development and implementation. Candidates should
-                    have a deep understanding of the fundamentals of JavaScript
-                    concepts.
+                    {post.SkillsRequirement}
                   </p>
-                  <button className="2xl:w-[18%] xl:w-[55%] max-sm:w-[100%] max-lg:w-[50%] py-2 sm:py-2 sm:semi-bold lg:text-xl sm:px-8 max-sm:pl-12 max-sm:pr-12 max-sm:text-center rounded-[10px] bg-cyan-600 text-white hover:bg-gray-900 hover:text-white hover:animate-pulse">Apply Now</button>
+                  <button
+                  onClick={() => deleteJob([post._id])} className="2xl:w-[18%] xl:w-[55%] max-sm:w-[100%] max-lg:w-[50%] py-2 sm:py-2 sm:semi-bold lg:text-xl sm:px-8 max-sm:pl-12 max-sm:pr-12 max-sm:text-center rounded-[10px] bg-cyan-600 text-white hover:bg-gray-900 hover:text-white hover:animate-pulse">Delete</button>
                 </li>
+                  ))}
 
-                <li className="bg-cyan-800 rounded px-5 py-5 cursor-pointer my-3">
-                  <h1 className="sm:text-2xl text-xl font-bold">Trainee Python Developer</h1>
-                  <p>Squarera</p>
-                  <p><i class="fa-solid fa-briefcase text-white mr-4"></i>Remote </p>
-                  <p>
-                    <i class="fa-solid fa-location-dot text-white mr-5"></i>
-                    Karachi <span className="ml-[5%] font-semibold sm:text-[1.1rem]">Salary 20,000 to 30,000</span>
-                  </p>
-                  <p className="my-2">
-                  As a Junior Python Developer trainee, you will have the opportunity 
-                  to dive into the world of scripting and application development. You'll 
-                  work closely with our engineering team to build end-to-end applications 
-                  using Python and Django. We encourage a hands-on approach, enabling you 
-                  to learn by doing.
-                  </p>
-                  <button className="2xl:w-[18%] xl:w-[55%] max-sm:w-[100%] max-lg:w-[50%] py-2 sm:py-2 sm:semi-bold lg:text-xl sm:px-8 max-sm:pl-12 max-sm:pr-12 max-sm:text-center rounded-[10px] bg-cyan-600 text-white hover:bg-gray-900 hover:text-white hover:animate-pulse">Apply Now</button>
-                </li>
 
               </ul>
             </div>

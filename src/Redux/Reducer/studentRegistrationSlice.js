@@ -1,4 +1,5 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import axios from "axios";
 
 const initialState = {
     formData: {
@@ -12,6 +13,28 @@ const initialState = {
     infoMessage: "",
   };
   
+
+  // Async Function to Post StudentRegistration Data
+
+  export const submitForm = createAsyncThunk(
+    "studentRegistration/SubmitForm",
+    async (formData, {dispatch}) => {
+      try{
+        const response = await axios.post(
+          process.env.REACT_APP_STUDENTREGISTRATION_URI, formData
+        );
+
+        // Successfully registration message
+        dispatch(studentRegistrationSlice.actions.setInfo("Successfully Registered"));
+
+        // Reset all fileds
+        dispatch(studentRegistrationSlice.actions.resetForm())
+      }
+      catch (error){
+        dispatch(studentRegistrationSlice.actions.setError("Registration Failed"))
+      }
+    }
+  )
 
   const studentRegistrationSlice = createSlice({
     name: "studentRegistration",

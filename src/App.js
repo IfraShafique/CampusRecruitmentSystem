@@ -46,6 +46,8 @@ export default function App() {
           <Route path='/student-panel' element = {<StuDashboard/>}/>
           <Route path='/stuprofile' element = {<StudentProfile/>}/>
           <Route path='/stuchangepass' element = {<StuChangePass/>}/>
+
+          {/* Company Panel */}
           <Route path='/company-panel' element = {<ComDashboard/>}/>
           <Route path='/post-job' element = {<PostJob/>}/>
           <Route path='/student-list' element = {<StudentList/>}/>
