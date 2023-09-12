@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import AdminMenu from "./AdminMenu";
 import axios from 'axios';
 
+
 export default function CompanyInfo(props) {
   const [menuOpen, setMenuOpen] = useState(false);
   const [companies, setCompanies] = useState([]);
@@ -107,7 +108,7 @@ export default function CompanyInfo(props) {
                       {company.CompanyEmail}
                     </th>
                     <th className="border-b-[1px]  border-cyan-600 py-4 w-[8] text-cyan-500 hover:text-cyan-300">
-                      <Link to={"/details"}>Details</Link>
+                      <Link to={`/get-companies/${company._id}`}>Details</Link>
                     </th>
                   </tr>
                   ))

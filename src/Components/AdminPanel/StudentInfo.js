@@ -76,7 +76,7 @@ export default function StudentInfo(props) {
                                 <th className='border-b-[1px] border-r-[1px] border-cyan-600 py-4 w-[10%]'>{student.StudentID}</th>
                                 <th className='border-b-[1px] border-r-[1px] border-cyan-600 py-4 w-[25%]'>{student.StudentName}</th>
                                 <th className='border-b-[1px] border-r-[1px] border-cyan-600 py-4 w-[15%]'>{student.Email}</th>
-                                <th className='border-b-[1px]  border-cyan-600 py-4 w-[8] text-cyan-500 hover:text-cyan-300'><Link to={'/details'}>Details</Link></th>
+                                <th className='border-b-[1px]  border-cyan-600 py-4 w-[8] text-cyan-500 hover:text-cyan-300'><Link to={`/get-students/${student._id}`}>Details</Link></th>
                             </tr>
                           ))}
                         

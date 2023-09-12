@@ -20,6 +20,7 @@ import PostJob from './Components/CompanyPanel/PostJob';
 import StudentList from './Components/CompanyPanel/StudentList';
 import ComChangePass from './Components/CompanyPanel/ComChangePass';
 import CompanyDetail from './Components/AdminPanel/CompanyDetail';
+import StudentDetail from './Components/AdminPanel/StudentDetail';
 
 
 
@@ -41,6 +42,7 @@ export default function App() {
           <Route path='/companyinfo' element = {<Company/>}/>
           <Route path='/get-companies/:companyId' element = {<CompanyDetail/>}/>
           <Route path='/studentinfo' element = {<StudentInfo/>}/>
+          <Route path='/get-students/:studentId' element = {<StudentDetail/>}/>
           <Route path='/vacancy' element = {<Vacancies/>}/>
           <Route path='/studentreg' element = {<StudentReg/>}/>
 
