@@ -5,9 +5,9 @@ import { Link } from 'react-router-dom';
 import AdminMenu from "./AdminMenu";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
-import { updateField, setError, setInfo, resetForm, submitForm } from "../../Redux/Reducer/studentRegistrationSlice";
+import { updateField, setError, setInfo, resetForm, submitForm } from "../../Redux/Reducer/RegistrationSlice";
 
-export default function StudentReg() {
+export default function Registration() {
   const dispatch = useDispatch();
   const formData = useSelector((state) => state.studentRegistration.formData);
   const [menuOpen, setMenuOpen] = useState(false);
@@ -15,16 +15,6 @@ export default function StudentReg() {
   // const [infoMessage, setInfoMessage] = useState("");
   const errorMessage = useSelector((state) => state.studentRegistration.errorMessage);
   const infoMessage = useSelector((state) => state.studentRegistration.infoMessage);
-
-  // const initialFormState = {
-  //   StudentID: "",
-  //   StudentName: "",
-  //   Email: "",
-  //   Password: "",
-  //   ConfirmPassword: "",
-  // };
-
-  // const [formData, setFormData] = useState(initialFormState);
 
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
@@ -34,11 +24,13 @@ export default function StudentReg() {
     event.preventDefault();
 
     const requiredFields = [
-      "StudentID",
-      "StudentName",
+      "LoginID",
+      "Name",
       "Email",
+      "ContactNo",
       "Password",
       "ConfirmPassword",
+      "Role",
     ];
 
     const isAnyFieldEmpty = requiredFields.some(
@@ -72,21 +64,8 @@ export default function StudentReg() {
     
     // Post Function
     dispatch(submitForm(formData));
-    dispatch(setInfo("Successfully Registered"));
+    // dispatch(setInfo("Successfully Registered"));
 
-    // axios
-    // .post(process.env.REACT_APP_STUDENTREGISTRATION_URI, formData)
-    // .then((result) => {
-    //   console.log("StudentRegistration", result.data);
-    //   dispatch(setInfo("Successfully Registered")); // You can show a success message
-    //   // Reset form fields to their initial empty state
-    //     dispatch(resetForm());
-        
-    //   })
-    //   .catch((err) => {
-    //     console.log(err);
-    //     dispatch(setError("Registration Failed")); // You can show an error message
-    //   });
   };
   
   const handleFieldChange = (fieldName, value) => {
@@ -96,11 +75,13 @@ export default function StudentReg() {
 
  // Modify your initialFields to include initial values
 const initialFields = [
-  { name: 'StudentID', type: 'text', value: formData.StudentID },
-  { name: 'StudentName', type: 'text', value: formData.StudentName },
+  { name: 'LoginID', type: 'text', value: formData.LoginID },
+  { name: 'Name', type: 'text', value: formData.Name },
   { name: 'Email', type: 'email', value: formData.Email },
+  { name: 'ContactNo', type: 'text', value: formData.ContactNo },
   { name: 'Password', type: 'password', value: formData.Password },
   { name: 'ConfirmPassword', type: 'password', value: formData.ConfirmPassword },
+  { name: 'Role', type: 'text', value: formData.ConfirmPassword },
   // Add more fields as needed
 ];
 
@@ -139,7 +120,7 @@ const initialFields = [
       <div div className="sm:mt-10 mx-auto my-auto max-sm:flex max-sm:flex-col justify-center items-center sm:w-[50%]">
         <div>
           <img src={img3} alt="logo" className="opacity-90 w-[60%] mx-auto sm:hidden" />
-          <h1 className="lg:text-5xl sm:text-3xl  text-2xl font-bold  max-sm:text-center mb-10">Student Registration</h1>
+          <h1 className="lg:text-5xl sm:text-3xl  text-2xl font-bold  max-sm:text-center mb-10">Registration</h1>
         </div>
     <form onSubmit={handleSubmit}>
       {initialFields.map((field, index) => (

@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import studentRegistrationSlice, { setError, setInfo } from "./studentRegistrationSlice";
+import studentRegistrationSlice, { setError, setInfo } from "./RegistrationSlice";
 import axios from "axios";
 
 

@@ -3,11 +3,13 @@ import axios from "axios";
 
 const initialState = {
     formData: {
-      StudentID: "", // Make sure the property name matches the field name
-      StudentName: "",
+      LoginID: "", // Make sure the property name matches the field name
+      Name: "",
       Email: "",
+      ContactNo: "",
       Password: "",
       ConfirmPassword: "",
+      Role: "",
     },
     errorMessage: "",
     infoMessage: "",
@@ -25,19 +27,19 @@ const initialState = {
         );
 
         // Successfully registration message
-        dispatch(studentRegistrationSlice.actions.setInfo("Successfully Registered"));
+        dispatch(RegistrationSlice.actions.setInfo("Successfully Registered"));
 
         // Reset all fileds
-        dispatch(studentRegistrationSlice.actions.resetForm())
+        dispatch(RegistrationSlice.actions.resetForm())
       }
       catch (error){
-        dispatch(studentRegistrationSlice.actions.setError("Registration Failed"))
+        dispatch(RegistrationSlice.actions.setError("Registration Failed"))
       }
     }
   )
 
-  const studentRegistrationSlice = createSlice({
-    name: "studentRegistration",
+  const RegistrationSlice = createSlice({
+    name: "Registration",
     initialState,
     reducers: {
       updateField: (state, action) => {
@@ -61,5 +63,5 @@ const initialState = {
     },
   });
   
-export const {updateField, setError, setInfo, resetForm} = studentRegistrationSlice.actions;
-export default studentRegistrationSlice.reducer;
+export const {updateField, setError, setInfo, resetForm} = RegistrationSlice.actions;
+export default RegistrationSlice.reducer;

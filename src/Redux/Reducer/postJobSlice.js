@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { setError, setInfo } from "./studentRegistrationSlice";
+import { setError, setInfo } from "./RegistrationSlice";
 import axios from "axios";
 
 const initialState = {

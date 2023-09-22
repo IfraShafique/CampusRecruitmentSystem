@@ -4,11 +4,16 @@ import { Link, Route, Routes } from "react-router-dom";
 import Title from "./Title";
 import Menu from "./Menu";
 import axios from "axios";
+import { fetchUserRegistrationData } from "../../Redux/Reducer/UserDataReducer";
+import { useDispatch, useSelector } from "react-redux";
 
 export default function StuDashboard() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [posts, setPost] = useState([]);
+  const userData = useSelector(state => state.userData);
+  const dispatch = useDispatch();
 
+  // *******Get job vacancies data
   useEffect(()=> {
     axios.get('http://localhost:4000/get-Jobs')
   .then((response) => {
@@ -22,8 +27,15 @@ export default function StuDashboard() {
       console.error('Response status:', error.response.status);
     }
   });
-
   },[])
+
+
+  // ************Fetch user data**********
+  useEffect(() =>{
+    dispatch(fetchUserRegistrationData())
+  }, [dispatch]);
+
+  // *******Toggle menu************
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
   };
@@ -48,6 +60,12 @@ export default function StuDashboard() {
           <div className="text-center pt-8 pb-5">
             <i class="fa-solid fa-user text-cyan-950 md:text-8xl text-4xl"></i>
           </div>
+
+          <div className='text-xl md:text-2xl text-center my-2 font-bold text-cyan-950'>
+          {userData && userData.data && userData.data.Name ? userData.data.Name : 'Loading...'}
+
+          </div>
+
           <Menu />
         </div>
 
@@ -68,7 +86,7 @@ export default function StuDashboard() {
 
                 <li className="bg-cyan-800 rounded sm:px-5 px-3 py-5 cursor-pointer my-3"  key={post._id}>
                   <h1 className="sm:text-2xl text-xl font-bold">{post.JobTitle}</h1>
-                  <p>{post.Company}</p>
+                  <p>{post.CompanyName}</p>
                   <p><i class="fa-solid fa-briefcase text-white mr-4"></i>{post.JobType} </p>
                   <p>
                     <i class="fa-solid fa-location-dot text-white mr-5"></i>

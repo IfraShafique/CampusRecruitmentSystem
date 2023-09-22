@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import { Link, Route, Routes } from "react-router-dom";
 
-export default function CompanyMenu() {
+export default function CompanyMenu({Id}) {
   return (
     <div>
       <ul className="max-md:text-sm">
         <li className="md:py-4 py-2 hover:bg-gray-200 sm:pl-10 pl-5 cursor-pointer">
           <i className="fa-solid fa-gauge text-cyan-950 mr-5"></i>
-          <Link to="/company-panel">Dashboard</Link>
+          <Link to={`/company-panel/${Id}`}>Dashboard</Link>
         </li>
         <li className="md:py-4 py-2 hover:bg-gray-200 sm:pl-10 pl-5 cursor-pointer">
           <i className="fa-regular fa-id-badge text-cyan-950 mr-5"></i>
@@ -19,11 +19,14 @@ export default function CompanyMenu() {
         </li>
         <li className="md:py-4 py-2 hover:bg-gray-200 sm:pl-10 pl-5 cursor-pointer">
           <i className="fa-solid fa-lock text-cyan-950 mr-5"></i>
-          <Link to="/comchangePass">Change Password</Link>
+          <Link to={`/change-password`}>Change Password</Link>
+
+
+
         </li>
         <li className="md:py-4 py-2 hover:bg-gray-200 sm:pl-10 pl-5 cursor-pointer">
           <i className="fa-solid fa-right-to-bracket text-cyan-950 mr-5"></i>
-          <Link to="/login">Logout</Link>
+          <Link to="/logout">Logout</Link>
         </li>
       </ul>
     </div>

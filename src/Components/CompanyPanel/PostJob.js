@@ -4,7 +4,7 @@ import Menu from './CompanyMenu';
 import img3 from '../Images/logoBlack.png';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import { setError, setInfo } from "../../Redux/Reducer/studentRegistrationSlice";
+import { setError, setInfo } from "../../Redux/Reducer/RegistrationSlice";
 import { submitForm, resetForm, updateField } from "../../Redux/Reducer/postJobSlice";
 import { useDispatch, useSelector } from "react-redux";
 

@@ -93,15 +93,22 @@ export default function StudentInfo(props) {
 
                 <li className="bg-cyan-800 rounded sm:px-5 px-3 py-5 cursor-pointer my-3"  key={post._id}>
                   <h1 className="sm:text-2xl text-xl font-bold">{post.JobTitle}</h1>
-                  <p>{post.Company}</p>
+                  <p>{post.CompanyName}</p>
                   <p><i class="fa-solid fa-briefcase text-white mr-4"></i>{post.JobType} </p>
                   <p>
                     <i class="fa-solid fa-location-dot text-white mr-5"></i>
                     {post.Location} <span className="ml-[5%] font-semibold sm:text-[1.1rem]">Salary {post.Salary}</span>
                   </p>
-                  <p className="my-2">
-                    {post.SkillsRequirement}
-                  </p>
+
+                  <div className="my-2"> 
+                    <p>Skills Requirement</p>
+                  <p>{post.SkillsRequirement}</p>
+                  </div>
+
+                  {/* <div className="my-2"> 
+                    <p>Job Responsiblities</p>
+                  <p>{post.SkillsRequirement}</p>
+                  </div> */}
                   <button
                   onClick={() => deleteJob([post._id])} className="2xl:w-[18%] xl:w-[55%] max-sm:w-[100%] max-lg:w-[50%] py-2 sm:py-2 sm:semi-bold lg:text-xl sm:px-8 max-sm:pl-12 max-sm:pr-12 max-sm:text-center rounded-[10px] bg-cyan-600 text-white hover:bg-gray-900 hover:text-white hover:animate-pulse">Delete</button>
                 </li>

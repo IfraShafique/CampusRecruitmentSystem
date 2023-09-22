@@ -3,7 +3,7 @@ import img2 from "../Images/img2.png";
 import img3 from "../Images/logoBlack.png";
 import { Link } from "react-router-dom";
 import AdminMenu from "../AdminPanel/AdminMenu";
-import {  setError, setInfo} from "../../Redux/Reducer/studentRegistrationSlice";
+import {  setError, setInfo} from "../../Redux/Reducer/RegistrationSlice";
 import { submitForm, resetForm, updateField } from "../../Redux/Reducer/companyRegistrationSlice";
 import { useDispatch, useSelector } from "react-redux";
 

@@ -1,54 +1,122 @@
+import {  AuthProvider, useAuth } from './AuthContext';
+import Cookies from 'js-cookie';
 import React, { useState } from "react";
 import img2 from "./Images/img2.png";
 import { Link, useNavigate } from 'react-router-dom';
-// import { useAuth } from './AuthContext';
+import axios from 'axios';
+import { useDispatch, useSelector } from "react-redux";
+import { setError, setInfo } from "../Redux/Reducer/RegistrationSlice";
+
 
 export default function Login() {
+  const dispatch = useDispatch();
   const [LoginID, setLoginID] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [Password, setPassword] = useState("");
   const navigate = useNavigate();
-  const [errorMessage, setErrorMessage] = useState("");
+  const errorMessage = useSelector((state) => state.studentRegistration.errorMessage);
+  const infoMessage = useSelector((state) => state.studentRegistration.infoMessage);
+  const {user, login} = useAuth();
+
   // const { login } = useAuth(); 
 
   const handleLoginChange = (e) => {
-    setEmail(e.target.value);
+    setLoginID(e.target.value);
   };
-
+  
   const handlePasswordChange = (e) => {
     setPassword(e.target.value);
   };
-
-
   
-
-  const handleLogin = (e) => {
+  
+  axios.defaults.withCredentials = true;
+  // Submit button functionality
+  
+  // Submit button functionality
+  const handleLogin = async (e) => {
     e.preventDefault();
-    // Replace with your actual default admin email and password
-    const defaultAdminEmail = "admin";
-    const defaultAdminPassword = "admin";
+    try {
+      const response = await axios.post(
+        'http://localhost:4000/login',
+        { LoginID, Password },
+        
+        {
+          withCredentials: true, // Make sure to include this option
+          headers: {
+            'Access-Control-Allow-Origin': '*',
+            'Content-Type': 'application/json',
+          },
+        }
+      );
+      // console.log('Server Response:', response.data);
   
-    if (email === "admin" && password === "admin" ) {
-      // Call the login function with the appropriate role
-      // login("admin"); // Make sure this function is being called
-      navigate('/admin-panel');
-    }
-    else if (email === "student" && password === "student" ) {
-      // Call the login function with the appropriate role
-      // login("admin"); // Make sure this function is being called
-      navigate('/student-panel');
-    }
-    else if (email === "company" && password === "company" ) {
-      // Call the login function with the appropriate role
-      // login("admin"); // Make sure this function is being called
-      navigate('/company-panel');
-    }
-    
-    else {
-    
-          setErrorMessage( "Invalid email or password");
+      const token = response.data.token; // Assuming the token is returned in the response
+      console.log('Token:', token);
+  
+      // Set the token as a cookie with an expiration date (adjust as needed)
+      const expirationDate = new Date(Date.now() + 18000 * 1000); // Token expiration time (1 hour)
+      
+      const userData = response.data;
+      console.log(userData);
+      login(userData);
+      if (userData && userData._id) {
+        console.log('ID:', userData._id);
+      }
+      console.log('Role:', userData.Role);
+      
+      // Redirect the user to the appropriate panel based on the token's content
+      if (userData.Role === 'admin') {
+        localStorage.setItem('jwt', token);
+        navigate('/admin-panel');
+      } else if (userData.Role === 'student') {
+        localStorage.setItem('jwt', token, );
+        navigate(`/student-panel`);
+      } else if (userData.Role === 'company') {
+        localStorage.setItem('jwt', token, );
+        navigate(`/company-panel/${userData.Id}`);
+      }
+      dispatch(setError(""));
+      dispatch(setInfo("Login Succesfully"));
+      dispatch(setInfo(""));
+    } catch (error) {
+      // Handle login errors
+      console.error('Login Error:', error);
+      // You can display an error message to the user if needed
+      dispatch(setError('Invalid Credentials'));
     }
   };
+  
+
+  
+//   const handleLogin = (e) => {
+//     e.preventDefault();
+//     axios.post('http://localhost:4000/login', {
+//   LoginID,
+//   Password
+// }, {
+//   headers: {
+//     'Content-Type': 'application/json'
+//   }
+// })
+// .then((result) => {
+//   console.log('API Response:', result.data); // Add this line
+//   const userData = result.data;
+//   console.log('userData.Role:', userData.Role);
+//   if(userData.Role === 'admin'){
+//     navigate('/admin-panel')
+//   }
+//   else if(userData.Role === 'student'){
+//     navigate('/student-panel');
+//   }
+//   else if(userData.Role === 'company'){
+//     navigate('/company-panel')
+//   }
+// })
+// .catch((error) => {
+//   dispatch(setError("Invalid Credentials"));
+//   console.error(error)
+// });
+      
+//   };
 
   return (
     // Logo
@@ -74,7 +142,7 @@ export default function Login() {
               </span>
               <input
                 type="text"
-                name="loginId"
+                name="LoginID"
                 placeholder="Enter Your Login ID"
                 required
                 autoComplete="username"
@@ -90,7 +158,7 @@ export default function Login() {
               </span>
               <input
                 type="password"
-                name="password"
+                name="Password"
                 placeholder="Enter Your Password"
                 required
                 autoComplete="current-password"
@@ -112,6 +180,7 @@ export default function Login() {
               <div className="mt-3 ml-1 max-sm:text-sm">
                 <button><i className="fa-solid fa-arrow-left text-white sm:text-sm text-xs sm:mr-1  "></i> <Link to='/'>Back to Home</Link></button>
                 <p className="text-red-700 text-xl font-semibold">{errorMessage}</p>
+                <p className="text-green-600 text-xl font-semibold">{infoMessage}</p>
               </div>
             </div>
           </div>

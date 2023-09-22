@@ -18,7 +18,7 @@ export default function StudentInfo(props) {
           console.log(response.data.data)
         })
         .catch((error) => {
-          console.error('Error fetching company data:', error);
+          console.error('Error fetching students data:', error);
         });
     }, []);
 
@@ -73,8 +73,8 @@ export default function StudentInfo(props) {
                         <tbody className='font-[arial] font-thin lg:text-xl sm:text-sm text-[0.6rem] '>
                           {students.map((student)=> (
                             <tr className='lg:text-base sm:text-sm text-xs '  key={student._id}>
-                                <th className='border-b-[1px] border-r-[1px] border-cyan-600 py-4 w-[10%]'>{student.StudentID}</th>
-                                <th className='border-b-[1px] border-r-[1px] border-cyan-600 py-4 w-[25%]'>{student.StudentName}</th>
+                                <th className='border-b-[1px] border-r-[1px] border-cyan-600 py-4 w-[10%]'>{student.LoginID}</th>
+                                <th className='border-b-[1px] border-r-[1px] border-cyan-600 py-4 w-[25%]'>{student.Name}</th>
                                 <th className='border-b-[1px] border-r-[1px] border-cyan-600 py-4 w-[15%]'>{student.Email}</th>
                                 <th className='border-b-[1px]  border-cyan-600 py-4 w-[8] text-cyan-500 hover:text-cyan-300'><Link to={`/get-students/${student._id}`}>Details</Link></th>
                             </tr>

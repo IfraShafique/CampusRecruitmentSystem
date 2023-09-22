@@ -9,26 +9,36 @@ import { useNavigate } from 'react-router-dom';
 export default function StudentDetail() {
     const {studentId} = useParams();
     const [menuOpen, setMenuOpen] = useState(false);
-    const [students, setStudents] = useState(null);
     const navigate = useNavigate();
   
+    const [students, setStudents] = useState([])
+
     useEffect(() => {
-        // Make a GET request to fetch student data
-        axios.get(`http://localhost:4000/get-students/${studentId}`)
-            .then((response) => {
-                setStudents(response.data.data);
-            })
-            .catch((error) => {
-                console.error('Error fetching student data:', error);
-            });
-    }, [studentId]);
+      if (!studentId) {
+          return;
+      }
+
+      // Make a GET request to fetch the details of the selected student
+      axios.get(`http://localhost:4000/student-profile/${studentId}`)
+          .then((response) => {
+              const data = response.data;
+
+              if (data && data.length > 0) {
+                  // Assuming the response is an array, you can take the first student
+                  setStudents(data[0]);
+              }
+          })
+          .catch((error) => {
+              console.error('Error fetching student data:', error);
+          });
+  }, [studentId]);
 
     if (!studentId) {
         return <div>No data Found</div>;
     }
   
-    if(!studentId) {
-      return <div>No data Found</div>
+    if (students === null) {
+      return <div>Loading...</div>;
     }
 
     // Delete function
@@ -89,7 +99,7 @@ export default function StudentDetail() {
 
             {/* **************right side **************/}
             {/* Students Detail*/}
-            <div className={`xl:w-[80%] lg:w-[70%] md:w-[65%] w-[100%] h-[100vh] bg-gray-100 pt-20  ${menuOpen ? 'hidden' : 'block'}`}>
+            <div className={`xl:w-[80%] lg:w-[70%] md:w-[65%] w-[100%] sm:h-[100vh] h-[100%] bg-gray-100 pt-20  ${menuOpen ? 'hidden' : 'block'}`}>
             
             <div className=' sm:w-[80%] w-[100%] ml-5 max-sm:flex max-sm:flex-col max-sm:items-center max-sm:mx-3'>
                 <h1 className='text-cyan-950 sm:text-4xl text-2xl font-bold mb-10 text-center'>{students.Name}</h1>
@@ -97,39 +107,39 @@ export default function StudentDetail() {
                 <div>
                   
                           <div className='flex'>
-                            <h2 className='border-cyan-600 py-2 px-10 text-xl font-bold'>Login ID:</h2>
-                            <p className='border-cyan-600 py-2 px-10 text-xl'>{students.ContactNo}</p>
+                            <h2 className='border-cyan-600 py-2 px-10 md:text-xl font-bold'>Contact No:</h2>
+                            <p className='border-cyan-600 py-2 px-10 md:text-xl'>{students.ContactNo}</p>
                           </div>
 
                           <div className='flex'>
-                            <h2 className='border-cyan-600 py-2 px-10 text-xl font-bold'>Industry:</h2>
-                          <p className='border-cyan-600 py-2 px-10 text-xl w-[60%]'>{students.Address}</p>
+                            <h2 className='border-cyan-600 py-2 px-10 md:text-xl font-bold'>Address:</h2>
+                          <p className='border-cyan-600 py-2 px-10 ml-8 md:text-xl w-[60%]'>{students.Address}</p>
                           </div>
 
                           <div className='flex'>
-                            <h2 className='border-cyan-600 py-2 px-10 text-xl font-bold'>HR Name:</h2>
-                          <p className='border-cyan-600 py-2 px-10 text-xl -ml-3 w-[60%]'>{students.HRName}</p>
+                            <h2 className='border-cyan-600 py-2 px-10 md:text-xl font-bold'>Department:</h2>
+                          <p className='border-cyan-600 py-2 px-10 md:text-xl -ml-2 w-[60%]'>{students.Department}</p>
                           </div>
 
                           <div className='flex'>
-                            <h2 className='border-cyan-600 py-2 px-10 text-xl font-bold'>Email:</h2>
-                          <p className='border-cyan-600 py-2 px-10 text-xl ml-6 w-[60%]'>{students.CompanyEmail}</p>
+                            <h2 className='border-cyan-600 py-2 px-10 md:text-xl font-bold'>Current Semester:</h2>
+                          <p className='border-cyan-600 py-2 px-10 md:text-xl md:-ml-14 sm:ml-10 w-[60%]'>{students.CurrentSemester}</p>
                           </div>
 
                           <div className='flex'>
-                            <h2 className='border-cyan-600 py-2 px-10 text-xl font-bold'>Contact No:</h2>
-                          <p className='border-cyan-600 py-2 px-10 text-xl -ml-7 w-[60%]'>{students.ContactNo}</p>
+                            <h2 className='border-cyan-600 py-2 px-10 md:text-xl font-bold'>CGPA:</h2>
+                          <p className='border-cyan-600 py-2 px-10 md:text-xl ml-14 w-[60%]'>{students.CGPA}</p>
                           </div>
 
                           <div className='flex'>
-                            <h2 className='border-cyan-600 py-2 px-10 text-xl font-bold'>Website Link:</h2>
-                          <p className='border-cyan-600 py-2 px-10 text-xl -ml-10 w-[60%]'>{students.WebsiteLink}</p>
+                            <h2 className='border-cyan-600 py-2 px-10 md:text-xl font-bold'>Skills:</h2>
+                          <p className='border-cyan-600 py-2 px-10 md:text-xl ml-14 w-[60%]'>{students.Skills}</p>
                           
                           </div>
 
                           <div className='flex'>
-                            <h2 className='border-cyan-600 py-2 px-10 text-xl font-bold'>About:</h2>
-                          <p className='border-cyan-600 py-2 px-10 text-xl ml-6 w-[60%]'>{students.AboutCompany}</p>
+                            <h2 className='border-cyan-600 py-2 px-10 md:text-xl font-bold'>Resume:</h2>
+                            <a href={students.resumePath} target="_blank" rel="noopener noreferrer"><i className="fas fa-file-pdf text-cyan-900 text-2xl ml-20"></i></a>
                           </div>
 
                           <div className='m-10 '>

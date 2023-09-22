@@ -11,7 +11,12 @@ export default function CompanyInfo(props) {
 
   useEffect(() => {
     // Make a GET request to fetch company data
-    axios.get('http://localhost:4000/get-companies')
+    axios.get('http://localhost:4000/get-companies',
+  // Make sure to include this option
+      {headers: {
+        'Access-Control-Allow-Origin': '*',
+        'Content-Type': 'application/json',
+      }})
       .then((response) => {
         setCompanies(response.data.data);
       })
@@ -99,13 +104,13 @@ export default function CompanyInfo(props) {
                       {company.LoginID}
                     </th>
                     <th className="border-b-[1px] border-r-[1px] border-cyan-600 py-4 w-[25%]">
-                      {company.CompanyName}
+                      {company.Name}
                     </th>
                     <th className="border-b-[1px] border-r-[1px] border-cyan-600 py-4 w-[15%]">
                       {company.ContactNo}
                     </th>
                     <th className="border-b-[1px] border-r-[1px] border-cyan-600 py-4 w-[15%]">
-                      {company.CompanyEmail}
+                      {company.Email}
                     </th>
                     <th className="border-b-[1px]  border-cyan-600 py-4 w-[8] text-cyan-500 hover:text-cyan-300">
                       <Link to={`/get-companies/${company._id}`}>Details</Link>

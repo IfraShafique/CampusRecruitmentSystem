@@ -1,15 +1,15 @@
 import { configureStore } from '@reduxjs/toolkit';
-import studentRegistrationSlice from './Reducer/studentRegistrationSlice'; // Updated import
-import companyRegistrationSlice from './Reducer/companyRegistrationSlice';
+import RegistrationSlice from './Reducer/RegistrationSlice'; // Updated import
 import studentProfileSlice from './Reducer/studentProfileSlice';
 import postJobSlice from './Reducer/postJobSlice';
+import UserDataSlice from './Reducer/UserDataReducer';
 
 const store = configureStore({
   reducer: {
-    studentRegistration: studentRegistrationSlice,
-    companyRegistration: companyRegistrationSlice,
+    studentRegistration: RegistrationSlice,
     studentProfile: studentProfileSlice,
     postJob: postJobSlice,
+    userData: UserDataSlice,
   },
 });
 

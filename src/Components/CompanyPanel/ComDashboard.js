@@ -1,15 +1,27 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import img2 from "../Images/img2.png";
 import { Link, Route, Routes } from "react-router-dom";
 import Title from "./CompanyTitle";
 import Menu from "./CompanyMenu";
+import { useParams } from "react-router-dom";
+import { fetchUserRegistrationData } from "../../Redux/Reducer/UserDataReducer";
+import { useDispatch, useSelector } from "react-redux";
 
 export default function ComDashboard() {
+  const dispatch = useDispatch();
   const [menuOpen, setMenuOpen] = useState(false);
-
+  const userData = useSelector(state=> state.userData);
+  const id = useParams();
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
   };
+
+  // *******Fetching User Data***********
+  useEffect(() => {
+    dispatch(fetchUserRegistrationData());
+  }, [dispatch]);
+
+
   return (
     <div className="">
       {/* Hamburger Button */}
@@ -30,6 +42,9 @@ export default function ComDashboard() {
         >
           <div className="text-center pt-8 pb-5">
             <i className="fa-solid fa-user text-cyan-950 md:text-8xl text-4xl"></i>
+          </div>
+          <div className='text-xl md:text-2xl text-center my-2 font-bold text-cyan-950'>
+            {userData ? userData.data.Name : 'Loading...'}
           </div>
           <Menu />
         </div>
