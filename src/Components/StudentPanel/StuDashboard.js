@@ -12,6 +12,35 @@ export default function StuDashboard() {
   const [posts, setPost] = useState([]);
   const userData = useSelector(state => state.userData);
   const dispatch = useDispatch();
+  
+
+  // Apply handle
+  const handleApplyNow = async (postId) => {
+    try {
+      if (userData.data) {
+        const studentProfileId = userData.data.studentProfile[0]; // Get the student profile ID
+        console.log("Student Profile ID:", studentProfileId);
+        
+        // Send a POST request to apply for the job with studentProfileId
+        const response = await axios.post('http://localhost:4000/student-panel', {
+          studentProfileId,
+          postId, // Pass postId
+        });
+  
+        // Handle the response (e.g., show a success message)
+        console.log('Application submitted successfully:', response.data);
+      } else {
+        console.log("User data not available yet.");
+      }
+    } catch (error) {
+      // Handle errors (e.g., show an error message)
+      console.error('Error submitting application:', error);
+    }
+  };
+  
+ 
+  
+  
 
   // *******Get job vacancies data
   useEffect(()=> {
@@ -95,7 +124,9 @@ export default function StuDashboard() {
                   <p className="my-2">
                     {post.SkillsRequirement}
                   </p>
-                  <button className="2xl:w-[18%] xl:w-[55%] max-sm:w-[100%] max-lg:w-[50%] py-2 sm:py-2 sm:semi-bold lg:text-xl sm:px-8 max-sm:pl-12 max-sm:pr-12 max-sm:text-center rounded-[10px] bg-cyan-600 text-white hover:bg-gray-900 hover:text-white hover:animate-pulse">Apply Now</button>
+                  
+                  <button onClick={() => handleApplyNow(post._id)}className="2xl:w-[18%] xl:w-[55%] max-sm:w-[100%] max-lg:w-[50%] py-2 sm:py-2 sm:semi-bold lg:text-xl sm:px-8 max-sm:pl-12 max-sm:pr-12 max-sm:text-center rounded-[10px] bg-cyan-600 text-white hover:bg-gray-900 hover:text-white hover:animate-pulse">Apply Now</button>
+                
                 </li>
                   ))}
 

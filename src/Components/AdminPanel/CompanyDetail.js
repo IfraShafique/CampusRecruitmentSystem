@@ -19,6 +19,7 @@ export default function CompanyDetail() {
       axios.get(`http://localhost:4000/get-companies/${companyId}`)
         .then((response) => {
           setCompanies(response.data.data);
+          console.log(response.data)
         })
         .catch((error) => {
           console.error('Error fetching company data:', error);
@@ -28,7 +29,7 @@ export default function CompanyDetail() {
         axios.get(`http://localhost:4000/jobPost/${companyId}`)
         .then((response) => {
           const data = response.data;
-    
+          console.log(data)
           if (data && data.length > 0) {
             // Assuming the response is an array, you can set the job posts
             setPost(data);

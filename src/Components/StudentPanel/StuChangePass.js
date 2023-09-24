@@ -3,13 +3,56 @@ import img2 from '../Images/img2.png';
 import { Link } from 'react-router-dom';
 import Title from "./Title";
 import Menu from "./Menu";
+import { useParams } from 'react-router-dom';
+import { useAuth } from '../AuthContext';
+import jwtDecode from 'jwt-decode';
+import axios from 'axios';
 
 export default function ChangePassword(props) {
-    const [menuOpen, setMenuOpen] = useState(false);
+  const { user } = useAuth();
+  const {Id} = useParams();
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [oldPassword, setOldPassword] = useState('');
+  const [newPassword, setNewPassword] = useState('');
+  const [message, setMessage] = useState();
 
-    const toggleMenu = () => {
-      setMenuOpen(!menuOpen);
-    };
+  const toggleMenu = () => {
+    setMenuOpen(!menuOpen);
+  };
+  const handleChangePassword = async () => {
+    const token = localStorage.getItem('jwt');
+    const decodedToken = jwtDecode(token);
+    
+    if (token) {
+      const currentTime = Date.now() / 1000; // Convert to seconds
+      if (decodedToken.exp < currentTime) {
+        // Token has expired
+        // Perform logout or redirect to login page
+        localStorage.removeItem('jwt'); // Clear the expired token from local storage
+      }
+    }
+
+    // Token exists, make authenticated request
+    axios.defaults.withCredentials = true;
+    axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+
+    axios.post(`http://localhost:4000/stuchangepass`, { oldPassword, newPassword })
+      .then((response) => {
+        console.log("Response from server:", response.data);
+  
+
+
+        // Update the client-side state with the new password
+        setOldPassword(''); // Set the old password to the new password
+        setNewPassword(''); // Clear the new password field
+        console.log(response.data)
+        setMessage('Password updated successfully');
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+        setMessage('Password change failed. Please check your input.');
+      });
+  };
     return (
 
       <div className=''>
@@ -54,8 +97,9 @@ export default function ChangePassword(props) {
                 </div>
 
                 <div className='flex  mt-10'>
-                <button className="2xl:w-[25%] xl:w-[55%] max-sm:w-[100%] max-lg:w-[50%] py-2 sm:py-2 sm:semi-bold lg:text-xl sm:px-8 max-sm:pl-12 max-sm:pr-12 max-sm:text-center rounded-[10px] bg-cyan-950 text-white hover:bg-gray-900 hover:text-white hover:animate-pulse">Submit</button>
-                </div>
+              <button onClick={handleChangePassword} className="2xl:w-[25%] xl:w-[55%] max-sm:w-[100%] max-lg:w-[50%] py-2 sm:py-2 sm:semi-bold lg:text-xl sm:px-8 max-sm:pl-12 max-sm:pr-12 max-sm:text-center rounded-[10px] bg-cyan-950 text-white hover:bg-gray-900 hover:text-white hover:animate-pulse">Submit</button>
+              <h1 className="text-green-700 font-semibold mt-2">{message}</h1>
+            </div>
                 {/* <input type="password" name='password' placeholder='Enter New Password' className='w-[70%] py-4 px-2 rounded border-2'/> */}
             </div>
         

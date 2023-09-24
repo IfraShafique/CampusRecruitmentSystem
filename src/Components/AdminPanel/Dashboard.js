@@ -16,6 +16,9 @@ export default function Dashboard() {
   const dispatch  = useDispatch();
   const userData = useSelector((state) => state.userData);
   const [isLoading, setIsLoading] = useState(true);
+  const [totalCompanies, setTotalCompanies] = useState(0);
+  const [totalStudents, setTotalStudents] = useState(0);
+  const [totalJobs, setTotalJobs] = useState(0);
 
 
     useEffect(() => {
@@ -27,6 +30,40 @@ export default function Dashboard() {
           setIsLoading(false); // Handle error and set loading to false
           console.error('Error fetching user data:', error);
         });
+
+        // Inside Dashboard component useEffect
+        axios.get('http://localhost:4000/get-companies')
+        .then((response) => {
+          const { data, companies } = response.data;
+          setTotalCompanies(companies); // Set the totalCompanies state
+          console.log('Companies:', data);
+        })
+        .catch((error) => {
+          console.log("Error in getting company data ", error);
+        });
+
+        // Inside Dashboard component useEffect
+        axios.get('http://localhost:4000/get-students')
+        .then((response) => {
+          const { data, students } = response.data;
+          setTotalStudents(students); // Set the totalCompanies state
+          console.log('Companies:', data);
+        })
+        .catch((error) => {
+          console.log("Error in getting company data ", error);
+        });
+
+        // Inside Dashboard component useEffect
+        axios.get('http://localhost:4000/get-jobs')
+        .then((response) => {
+          const { data, posts } = response.data;
+          setTotalJobs(posts); // Set the totalCompanies state
+          console.log('Companies:', data);
+        })
+        .catch((error) => {
+          console.log("Error in getting company data ", error);
+        });
+
     }, [dispatch]);
   
 
@@ -61,13 +98,13 @@ export default function Dashboard() {
           {isLoading ? 'Loading...' : (userData && userData.data && userData.data.Name) || 'No Name'}
         </div>
 
-        <AdminMenu/>
+        <AdminMenu />
         </div>
 
  
         {/* Details */}
         <div className={`xl:w-[80%] lg:w-[70%] md:w-[65%] w-[100%] h-[100vh] bg-gray-100 ${menuOpen ? 'hidden' : 'block'}`}>
-          <AllInfo/>
+          <AllInfo totalCompanies={totalCompanies} totalStudents={totalStudents} totalJobs={totalJobs}/>
         
         
        
