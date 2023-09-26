@@ -58,29 +58,27 @@ export default function CompanyDetail() {
   // }, [companyId]);
 
     // Delete function
+    // Update the deleteCompany function in your client-side code
     const deleteCompany = (companyId) => {
-        axios.delete(`http://localhost:4000/delete-company/${companyId}`)
-
-          .then((response) => {
-            // Handle the response (success or error)
-            console.log(response.data);
-            // Update the state to remove the deleted job from the list
-            if (response.data.message === 'Job deleted successfully') {
-                // Update the state to remove the deleted company from the list
-                setCompanies((prevCompanies) =>
-                  prevCompanies.filter((company) => company._id !== companyId)
-                );
-        
-                // Navigate back to the company info page (assuming '/company-info' is the correct route)
-                navigate('/companyinfo');
-              } else {
-                console.error("Error deleting company:", response.data.message);
-              }
-          })
-          .catch((error) => {
-            console.error("Error deleting job:", error);
-          });
-      };
+      axios.delete(`http://localhost:4000/delete-company/${companyId}`)
+        .then((response) => {
+          // Handle the response (success or error)
+          console.log(response.data);
+          if (response.data.message === 'Company deleted successfully') {
+            // Update the state to remove the deleted company from the list
+            setCompanies((prevCompanies) =>
+            prevCompanies.filter((company) => company._id !== companyId)
+            );
+            navigate('/companyinfo');
+    
+            // Navigate back to the company info page (assuming '/companyinfo' is the correct route)
+          } 
+        })
+        .catch((error) => {
+          console.error("Error deleting company:", error);
+        });
+    };
+    
 
     const toggleMenu = () => {
         setMenuOpen(!menuOpen);
@@ -169,7 +167,7 @@ export default function CompanyDetail() {
 
 
                           <div className='m-10 '>
-                            <button onClick={() => deleteCompany([companies._id])} className="2xl:w-[18%] xl:w-[55%] max-sm:w-[100%] max-lg:w-[50%] py-2 sm:py-2 sm:semi-bold lg:text-xl sm:px-8 max-sm:pl-12 max-sm:pr-12 max-sm:text-center rounded-[10px] bg-red-600 text-white hover:bg-black hover:text-white hover:animate-pulse">Delete</button>
+                            <button onClick={() => deleteCompany(companyId)} className="2xl:w-[18%] xl:w-[55%] max-sm:w-[100%] max-lg:w-[50%] py-2 sm:py-2 sm:semi-bold lg:text-xl sm:px-8 max-sm:pl-12 max-sm:pr-12 max-sm:text-center rounded-[10px] bg-red-600 text-white hover:bg-black hover:text-white hover:animate-pulse">Delete</button>
                           </div>
                           
                 </div>

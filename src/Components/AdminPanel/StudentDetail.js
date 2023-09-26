@@ -143,7 +143,7 @@ export default function StudentDetail() {
                           </div>
 
                           <div className='m-10 '>
-                            <button onClick={() => deleteCompany([students._id])} className="2xl:w-[18%] xl:w-[55%] max-sm:w-[100%] max-lg:w-[50%] py-2 sm:py-2 sm:semi-bold lg:text-xl sm:px-8 max-sm:pl-12 max-sm:pr-12 max-sm:text-center rounded-[10px] bg-red-600 text-white hover:bg-black hover:text-white hover:animate-pulse">Delete</button>
+                            <button onClick={() => deleteCompany(studentId)} className="2xl:w-[18%] xl:w-[55%] max-sm:w-[100%] max-lg:w-[50%] py-2 sm:py-2 sm:semi-bold lg:text-xl sm:px-8 max-sm:pl-12 max-sm:pr-12 max-sm:text-center rounded-[10px] bg-red-600 text-white hover:bg-black hover:text-white hover:animate-pulse">Delete</button>
                           </div>
                           
                 </div>

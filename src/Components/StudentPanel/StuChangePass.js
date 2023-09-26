@@ -1,16 +1,11 @@
 import React, { useState } from 'react';
-import img2 from '../Images/img2.png';
-import { Link } from 'react-router-dom';
 import Title from "./Title";
 import Menu from "./Menu";
-import { useParams } from 'react-router-dom';
-import { useAuth } from '../AuthContext';
 import jwtDecode from 'jwt-decode';
 import axios from 'axios';
 
 export default function ChangePassword(props) {
-  const { user } = useAuth();
-  const {Id} = useParams();
+
   const [menuOpen, setMenuOpen] = useState(false);
   const [oldPassword, setOldPassword] = useState('');
   const [newPassword, setNewPassword] = useState('');
@@ -36,22 +31,18 @@ export default function ChangePassword(props) {
     axios.defaults.withCredentials = true;
     axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 
-    axios.post(`http://localhost:4000/stuchangepass`, { oldPassword, newPassword })
-      .then((response) => {
-        console.log("Response from server:", response.data);
-  
-
-
-        // Update the client-side state with the new password
-        setOldPassword(''); // Set the old password to the new password
-        setNewPassword(''); // Clear the new password field
-        console.log(response.data)
-        setMessage('Password updated successfully');
-      })
-      .catch((error) => {
-        console.error("Error:", error);
-        setMessage('Password change failed. Please check your input.');
-      });
+    axios
+    .post('http://localhost:4000/stuchangepass', { oldPassword, newPassword })
+    .then((response) => {
+      console.log('Response from server:', response.data);
+      setOldPassword('');
+      setNewPassword('');
+      setMessage('Password updated successfully');
+    })
+    .catch((error) => {
+      console.error('Error:', error);
+      setMessage('Password change failed. Please check your input.');
+    });
   };
     return (
 
