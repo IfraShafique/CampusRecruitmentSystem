@@ -26,6 +26,10 @@ export default function StuDashboard() {
           studentProfileId,
           postId, // Pass postId
         });
+
+        if (userData.error) {
+          return <div>Error: {userData.error}</div>;
+        }
   
         // Handle the response (e.g., show a success message)
         console.log('Application submitted successfully:', response.data);
