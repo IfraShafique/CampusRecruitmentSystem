@@ -29,7 +29,7 @@ export default function StudentList() {
     axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
             
     axios
-      .get('http://localhost:4000/get-applicants') // Updated route to /get-applicants
+      .get('https://campus-recruitment-system-backend-btjmnyhxc-ifrashafique.vercel.app/get-applicants') // Updated route to /get-applicants
       .then((response) => {
         setApplicants(response.data);
         console.log("Response: ", response.data);
