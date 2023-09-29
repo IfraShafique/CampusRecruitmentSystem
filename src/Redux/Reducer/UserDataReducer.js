@@ -22,18 +22,14 @@ export const fetchUserRegistrationData = createAsyncThunk(
             // Token exists, make authenticated request
             axios.defaults.withCredentials = true;
             axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
-            const response = await axios.get('https://campus-recruitment-system-backend-btjmnyhxc-ifrashafique.vercel.app/userData');
+            const response = await axios.get(
+        "https://campus-recruitment-system-backend-btjmnyhxc-ifrashafique.vercel.app/userData"
+      );
 
-            console.log('Result:', response.data);
-            console.log("Token", token);
-        
-            // Return the data fetched from the server
-            return response.data;
-            
-            
-        } catch (error) {
-            throw(error)
-        }
+      return response.data;
+    } catch (error) {
+      throw error; // This will be captured by fetchUserRegistrationData.rejected action
+    }
 
     }
 )
@@ -58,9 +54,9 @@ const userDataSlice = createSlice({
           state.data = action.payload;
         })
         .addCase(fetchUserRegistrationData.rejected, (state, action) => {
-          state.loading = false;
-          state.error = action.error.message; // Handle the error as needed
-        });
+      state.loading = false;
+      state.error = action.error.message; // Handle the error as needed
+    });
     },
   });
   
