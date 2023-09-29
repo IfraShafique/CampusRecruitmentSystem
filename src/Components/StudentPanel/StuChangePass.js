@@ -32,7 +32,7 @@ export default function ChangePassword(props) {
     axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 
     axios
-    .post('http://localhost:4000/stuchangepass', { oldPassword, newPassword })
+    .post('https://campus-recruitment-system-backend-btjmnyhxc-ifrashafique.vercel.app/stuchangepass', { oldPassword, newPassword })
     .then((response) => {
       console.log('Response from server:', response.data);
       setOldPassword('');
