@@ -60,7 +60,11 @@ export default function CompanyDetail() {
     // Delete function
     // Update the deleteCompany function in your client-side code
     const deleteCompany = (companyId) => {
-      axios.delete(`http://localhost:4000/delete-company/${companyId}`)
+      axios.delete(`http://localhost:4000/delete-company/${companyId}`,
+                  {headers: {
+        'Access-Control-Allow-Origin': '*',
+        'Content-Type': 'application/json',
+      }})
         .then((response) => {
           // Handle the response (success or error)
           console.log(response.data);
