@@ -22,7 +22,7 @@ export const fetchUserRegistrationData = createAsyncThunk(
             // Token exists, make authenticated request
             axios.defaults.withCredentials = true;
             axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
-            const response = await axios.get('http://localhost:4000/userData');
+            const response = await axios.get('https://campus-recruitment-system-backend-btjmnyhxc-ifrashafique.vercel.app/userData');
 
             console.log('Result:', response.data);
             console.log("Token", token);
