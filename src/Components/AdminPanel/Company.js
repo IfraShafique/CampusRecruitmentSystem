@@ -11,7 +11,7 @@ export default function CompanyInfo(props) {
 
   useEffect(() => {
     // Make a GET request to fetch company data
-    axios.get('http://localhost:4000/get-companies',
+    axios.get('https://campus-recruitment-system-backend-btjmnyhxc-ifrashafique.vercel.app/get-companies',
   // Make sure to include this option
       {headers: {
         'Access-Control-Allow-Origin': '*',
