@@ -21,9 +21,12 @@ export const fetchUserRegistrationData = createAsyncThunk(
             console.log(decodedToken);
             // Token exists, make authenticated request
             axios.defaults.withCredentials = true;
-            axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+            // axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
             const response = await axios.get(
-        "https://campus-recruitment-system-backend-btjmnyhxc-ifrashafique.vercel.app/userData"
+        "https://campus-recruitment-system-backend-btjmnyhxc-ifrashafique.vercel.app/userData",
+                headers: {
+                Authorization: `Bearer ${token}`
+  }
       );
 
       return response.data;
