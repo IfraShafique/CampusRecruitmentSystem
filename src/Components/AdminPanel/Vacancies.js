@@ -27,7 +27,7 @@ export default function StudentInfo(props) {
   };
   useEffect(() => {
     axios
-      .get("http://localhost:4000/get-Jobs")
+      .get("https://campus-recruitment-system-backend-btjmnyhxc-ifrashafique.vercel.app/get-Jobs")
       .then((response) => {
         setPosts(response.data.data); // Corrected variable name
         console.log(response.data.data);
@@ -43,7 +43,7 @@ export default function StudentInfo(props) {
 
   const deleteJob = (jobId) => {
     axios
-      .delete(`http://localhost:4000/delete-job/${jobId}`)
+      .delete(`https://campus-recruitment-system-backend-btjmnyhxc-ifrashafique.vercel.app/delete-job/${jobId}`)
       .then((response) => {
         // Handle the response (success or error)
         console.log(response.data);
