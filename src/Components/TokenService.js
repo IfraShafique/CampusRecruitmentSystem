@@ -3,7 +3,7 @@ import axios from 'axios';
 
 export const refreshAccessToken = async (expiredToken) => {
   try {
-    const response = await axios.post('/refreshToken', { token: expiredToken });
+    const response = await axios.post('https://campus-recruitment-system-backend-btjmnyhxc-ifrashafique.vercel.app/refreshToken', { token: expiredToken });
     const newToken = response.data.token;
     return newToken;
   } catch (error) {
