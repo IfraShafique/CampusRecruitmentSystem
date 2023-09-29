@@ -16,7 +16,7 @@ export default function CompanyDetail() {
   
     useEffect(() => {
       // Make a GET request to fetch company data
-      axios.get(`http://localhost:4000/get-companies/${companyId}`)
+      axios.get(`https://campus-recruitment-system-backend-btjmnyhxc-ifrashafique.vercel.app/get-companies/${companyId}`)
         .then((response) => {
           setCompanies(response.data.data);
           console.log(response.data)
@@ -26,7 +26,7 @@ export default function CompanyDetail() {
         });
 
         // Make a GET request to fetch the details of the selected student
-        axios.get(`http://localhost:4000/jobPost/${companyId}`)
+        axios.get(`https://campus-recruitment-system-backend-btjmnyhxc-ifrashafique.vercel.app/jobPost/${companyId}`)
         .then((response) => {
           const data = response.data;
           console.log(data)
