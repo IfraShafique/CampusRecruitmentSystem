@@ -43,7 +43,11 @@ export default function StudentDetail() {
 
     // Delete function
     const deleteCompany = (studentId) => {
-        axios.delete(`https://campus-recruitment-system-backend-btjmnyhxc-ifrashafique.vercel.app/delete-student/${studentId}`)
+        axios.delete(`https://campus-recruitment-system-backend-btjmnyhxc-ifrashafique.vercel.app/delete-student/${studentId}`,
+                    {headers: {
+        'Access-Control-Allow-Origin': '*',
+        'Content-Type': 'application/json',
+      }})
 
           .then((response) => {
             // Handle the response (success or error)
