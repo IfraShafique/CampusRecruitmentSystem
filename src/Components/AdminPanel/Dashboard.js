@@ -32,7 +32,7 @@ export default function Dashboard() {
         });
 
         // Inside Dashboard component useEffect
-        axios.get('http://localhost:4000/get-companies')
+        axios.get('https://campus-recruitment-system-backend-btjmnyhxc-ifrashafique.vercel.app/get-companies')
         .then((response) => {
           const { data, companies } = response.data;
           setTotalCompanies(companies); // Set the totalCompanies state
@@ -43,7 +43,7 @@ export default function Dashboard() {
         });
 
         // Inside Dashboard component useEffect
-        axios.get('http://localhost:4000/get-students')
+        axios.get('https://campus-recruitment-system-backend-btjmnyhxc-ifrashafique.vercel.app/get-students')
         .then((response) => {
           const { data, students } = response.data;
           setTotalStudents(students); // Set the totalCompanies state
@@ -54,7 +54,7 @@ export default function Dashboard() {
         });
 
         // Inside Dashboard component useEffect
-        axios.get('http://localhost:4000/get-jobs')
+        axios.get('https://campus-recruitment-system-backend-btjmnyhxc-ifrashafique.vercel.app/get-jobs')
         .then((response) => {
           const { data, posts } = response.data;
           setTotalJobs(posts); // Set the totalCompanies state
