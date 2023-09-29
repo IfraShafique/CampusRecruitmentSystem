@@ -34,7 +34,7 @@ export default function ComDashboard() {
       });
 
       axios
-      .get("http://localhost:4000/totalPosts")
+      .get("https://campus-recruitment-system-backend-btjmnyhxc-ifrashafique.vercel.app/totalPosts")
       .then((response) => {
         const { user } = response.data;
         setTotalJobPosts(user); // Set the state with the total job posts
@@ -46,7 +46,7 @@ export default function ComDashboard() {
 
       // Total number of applicant
       axios
-      .get("http://localhost:4000/totalApplicant")
+      .get("https://campus-recruitment-system-backend-btjmnyhxc-ifrashafique.vercel.app/totalApplicant")
       .then((response) => {
         const { user } = response.data;
         setTotalJobApplicants(user); // Set the state with the total job posts
