@@ -76,7 +76,7 @@ export default function StudentInfo(props) {
 
   const editJob = (jobId) => {
     axios
-      .put(`http://localhost:4000/edit-job/${jobId}`, editedData)
+      .put(`https://campus-recruitment-system-backend-btjmnyhxc-ifrashafique.vercel.app/edit-job/${jobId}`, editedData)
       .then((response) => {
         setEditMode(null);
         const updatedPosts = posts.map((post) =>
