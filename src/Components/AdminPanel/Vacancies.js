@@ -43,7 +43,11 @@ export default function StudentInfo(props) {
 
   const deleteJob = (jobId) => {
     axios
-      .delete(`https://campus-recruitment-system-backend-btjmnyhxc-ifrashafique.vercel.app/delete-job/${jobId}`)
+      .delete(`https://campus-recruitment-system-backend-btjmnyhxc-ifrashafique.vercel.app/delete-job/${jobId}`,
+             {headers: {
+        'Access-Control-Allow-Origin': '*',
+        'Content-Type': 'application/json',
+      }})
       .then((response) => {
         // Handle the response (success or error)
         console.log(response.data);
