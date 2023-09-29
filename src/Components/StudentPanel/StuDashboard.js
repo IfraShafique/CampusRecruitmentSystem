@@ -22,7 +22,7 @@ export default function StuDashboard() {
         console.log("Student Profile ID:", studentProfileId);
         
         // Send a POST request to apply for the job with studentProfileId
-        const response = await axios.post('http://localhost:4000/student-panel', {
+        const response = await axios.post('https://campus-recruitment-system-backend-btjmnyhxc-ifrashafique.vercel.app/student-panel', {
           studentProfileId,
           postId, // Pass postId
         });
@@ -44,7 +44,7 @@ export default function StuDashboard() {
 
   // *******Get job vacancies data
   useEffect(()=> {
-    axios.get('http://localhost:4000/get-Jobs')
+    axios.get('https://campus-recruitment-system-backend-btjmnyhxc-ifrashafique.vercel.app/get-Jobs')
   .then((response) => {
     setPost(response.data.data);
     console.log(response.data.data);
