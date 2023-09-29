@@ -40,7 +40,7 @@ console.log(token);
     axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 
 axios
-  .get('http://localhost:4000/userData')
+  .get('https://campus-recruitment-system-backend-btjmnyhxc-ifrashafique.vercel.app/userData')
   .then((result) => {
     console.log('Result:', result.data);
     console.log("Token", token);
