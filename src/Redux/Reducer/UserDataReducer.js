@@ -6,6 +6,7 @@ export const fetchUserRegistrationData = createAsyncThunk(
   async (_, { rejectWithValue }) => {
     try {
       const token = localStorage.getItem('jwt');
+      console.log(token);
 
       if (!token) {
         return rejectWithValue('Token not found');
@@ -21,7 +22,7 @@ export const fetchUserRegistrationData = createAsyncThunk(
           }
         }
       );
-
+      console.log(response.data);
       return response.data;
     } catch (error) {
       throw error;
