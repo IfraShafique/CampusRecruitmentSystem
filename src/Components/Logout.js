@@ -10,7 +10,7 @@ export default function Logout() {
     const logout = async(e) => {
       
         try{
-            const res =  axios.get('http://localhost:4000/logout', {
+            const res =  axios.get('https://campus-recruitment-system-backend-btjmnyhxc-ifrashafique.vercel.app/logout', {
           headers: {
             Access : "application/json",
             'Content-Type': 'application/json'
