@@ -34,7 +34,7 @@ export default function ComChangePass(props) {
     axios.defaults.withCredentials = true;
     axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 
-    axios.post(`http://localhost:4000/change-password`, { oldPassword, newPassword })
+    axios.post(`https://campus-recruitment-system-backend-btjmnyhxc-ifrashafique.vercel.app/change-password`, { oldPassword, newPassword })
       .then((response) => {
         console.log("Response from server:", response.data);
   
