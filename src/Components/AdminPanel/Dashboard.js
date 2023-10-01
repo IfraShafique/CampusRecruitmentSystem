@@ -21,16 +21,48 @@ export default function Dashboard() {
   const [totalStudents, setTotalStudents] = useState(0);
   const [totalJobs, setTotalJobs] = useState(0);
 
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const token = localStorage.getItem('jwt');
+        const decodedToken = jwtDecode(token);
+
+        if (token) {
+          const currentTime = Date.now() / 1000;
+          if (decodedToken.exp < currentTime) {
+            localStorage.removeItem('jwt');
+            navigate('/login');
+            return;
+          }
+        }
+
+        // Fetch user data
+        const userDataResponse = await axios.get('https://campus-recruitment-system-backend-btjmnyhxc-ifrashafique.vercel.app/userData', {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        });
+
+        setUserData(userDataResponse.data);
+        setIsLoading(false);
+
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+
+    fetchData();
+  }, []);
 
     useEffect(() => {
-      dispatch(fetchUserRegistrationData())
-        .then(() => {
-          setIsLoading(false); // Set loading to false when data is fetched
-        })
-        .catch((error) => {
-          setIsLoading(false); // Handle error and set loading to false
-          console.error('Error fetching user data:', error);
-        });
+      // dispatch(fetchUserRegistrationData())
+      //   .then(() => {
+      //     setIsLoading(false); // Set loading to false when data is fetched
+      //   })
+      //   .catch((error) => {
+      //     setIsLoading(false); // Handle error and set loading to false
+      //     console.error('Error fetching user data:', error);
+      //   });
 
         // Inside Dashboard component useEffect
         axios.get('https://campus-recruitment-system-backend-btjmnyhxc-ifrashafique.vercel.app/get-companies')
@@ -65,7 +97,7 @@ export default function Dashboard() {
           console.log("Error in getting company data ", error);
         });
 
-    }, [dispatch]);
+    }, [navigate]);
   
 
   const toggleMenu = () => {
