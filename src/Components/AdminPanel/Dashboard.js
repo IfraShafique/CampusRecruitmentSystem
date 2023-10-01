@@ -43,17 +43,19 @@ export default function Dashboard() {
 
 
         // Fetch user data
+        
         const userDataResponse = await axios.get('https://campus-recruitment-system-backend-btjmnyhxc-ifrashafique.vercel.app/userData');
         setUserData(userDataResponse.data);
             console.log('Result:', response.data);
             console.log("Token", token);
         
             // Return the data fetched from the server
-            return response.data;
+            // return response.data;
             
             
         } catch (error) {
             throw(error)
+          console.log(error)
         }
 
         // Inside Dashboard component useEffect
