@@ -21,40 +21,52 @@ export default function Dashboard() {
   const [totalStudents, setTotalStudents] = useState(0);
   const [totalJobs, setTotalJobs] = useState(0);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const token = localStorage.getItem('jwt');
-        console.log('Token:', token);
-        const decodedToken = jwtDecode(token);
-        console.log('Decoded Token:', decodedToken);
-
-        if (token) {
-          const currentTime = Date.now() / 1000;
-          if (decodedToken.exp < currentTime) {
-            localStorage.removeItem('jwt');
-            navigate('/login');
-            return;
-          }
-        }
-
-        // Fetch user data
-        const userDataResponse = await axios.get('https://campus-recruitment-system-backend-btjmnyhxc-ifrashafique.vercel.app/userData', {
-          headers: {
-            Authorization: `Bearer ${token}`
-          }
-        });
-
-        setUserData(userDataResponse.data);
-        setIsLoading(false);
-
-      } catch (error) {
-        console.error('Error fetching data:', error);
+ useEffect(() => {
+  const fetchData = async () => {
+    try {
+      const token = localStorage.getItem('jwt');
+      if (!token) {
+        // Handle case where token is missing
+        navigate('/login');
+        return;
       }
-    };
 
-    fetchData();
-  }, []);
+      let decodedToken;
+      try {
+        decodedToken = jwtDecode(token);
+      } catch (error) {
+        // Handle decoding error
+        console.error('Error decoding token:', error);
+        navigate('/login');
+        return;
+      }
+
+      const currentTime = Date.now() / 1000;
+      if (decodedToken.exp < currentTime) {
+        // Token has expired
+        localStorage.removeItem('jwt');
+        navigate('/login');
+        return;
+      }
+
+      // Fetch user data
+      const userDataResponse = await axios.get('https://campus-recruitment-system-backend-btjmnyhxc-ifrashafique.vercel.app/userData', {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      });
+
+      setUserData(userDataResponse.data);
+      setIsLoading(false);
+
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+  };
+
+  fetchData();
+}, []);
+
 
     useEffect(() => {
       // dispatch(fetchUserRegistrationData())
