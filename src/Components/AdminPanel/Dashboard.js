@@ -32,7 +32,8 @@ export default function Dashboard() {
         }
 
         axios.defaults.withCredentials = true;
-        axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+        axios.defaults.headers.common['Authorization'] = `Bearer ${localStorage.getItem('jwt')}`;
+
 
         // Fetch user data
         const userDataResponse = await axios.get('https://campus-recruitment-system-backend-btjmnyhxc-ifrashafique.vercel.app/userData');
