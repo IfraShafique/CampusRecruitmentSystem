@@ -25,7 +25,9 @@ export default function Dashboard() {
     const fetchData = async () => {
       try {
         const token = localStorage.getItem('jwt');
+        console.log('Token:', token);
         const decodedToken = jwtDecode(token);
+        console.log('Decoded Token:', decodedToken);
 
         if (token) {
           const currentTime = Date.now() / 1000;
