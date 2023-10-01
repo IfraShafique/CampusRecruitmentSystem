@@ -12,10 +12,10 @@ import { useDispatch, useSelector } from 'react-redux';
 export default function Dashboard() {
   const [menuOpen, setMenuOpen] = useState(false);
   const navigate = useNavigate(); // Initialize useNavigate
-  const [userData, setUserData] = useState(null)
+  // const [userData, setUserData] = useState(null)
   const location = useLocation();
   const dispatch  = useDispatch();
-  // const userData = useSelector((state) => state.userData);
+  const userData = useSelector((state) => state.userData);
   const [isLoading, setIsLoading] = useState(true);
   const [totalCompanies, setTotalCompanies] = useState(0);
   const [totalStudents, setTotalStudents] = useState(0);
@@ -23,40 +23,14 @@ export default function Dashboard() {
 
 
     useEffect(() => {
-       const fetchData = async () => {
-      try {
-        const token = localStorage.getItem('jwt');
-        const decodedToken = jwtDecode(token);
-
-        if (token) {
-          const currentTime = Date.now() / 1000;
-          if (decodedToken.exp < currentTime) {
-            localStorage.removeItem('jwt');
-            // Redirect to login page if token has expired
-            navigate('/login');
-            return;
-          }
-        }
-
-        axios.defaults.withCredentials = true;
-        axios.defaults.headers.common['Authorization'] = `Bearer ${localStorage.getItem('jwt')}`;
-
-
-        // Fetch user data
-        
-        const userDataResponse = await axios.get('https://campus-recruitment-system-backend-btjmnyhxc-ifrashafique.vercel.app/userData');
-        setUserData(userDataResponse.data);
-            console.log('Result:', response.data);
-            console.log("Token", token);
-        
-            // Return the data fetched from the server
-            // return response.data;
-            
-            
-        } catch (error) {
-            throw(error)
-          console.log(error)
-        }
+      dispatch(fetchUserRegistrationData())
+        .then(() => {
+          setIsLoading(false); // Set loading to false when data is fetched
+        })
+        .catch((error) => {
+          setIsLoading(false); // Handle error and set loading to false
+          console.error('Error fetching user data:', error);
+        });
 
         // Inside Dashboard component useEffect
         axios.get('https://campus-recruitment-system-backend-btjmnyhxc-ifrashafique.vercel.app/get-companies')
@@ -91,8 +65,7 @@ export default function Dashboard() {
           console.log("Error in getting company data ", error);
         });
 
-         fetchData();
-    }, [navigate);
+    }, [dispatch]);
   
 
   const toggleMenu = () => {
@@ -142,6 +115,40 @@ export default function Dashboard() {
 
   )
 }
+
+
+
+// useEffect(() => {
+
+//   dispatch(fetchUserRegistrationData());
+//     const token = localStorage.getItem('jwt');
+
+//     const decodedToken = jwtDecode(token);
+//     if (token) {
+//       const currentTime = Date.now() / 1000; // Convert to seconds
+//       if (decodedToken.exp < currentTime) {
+//         // Token has expired
+//         // Perform logout or redirect to login page
+//         localStorage.removeItem('jwt'); // Clear the expired token from local storage
+//       }}
+
+//     console.log(decodedToken);
+//     // Token exists, make authenticated request
+//     axios.defaults.withCredentials = true;
+//     axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+
+// axios
+//   .get('http://localhost:4000/admin-panel')
+//   .then((result) => {
+//     console.log('Result:', result.data);
+//     console.log("Token", token);
+//     setUserData(result.data);
+//     if (result.data === 'success') {
+//       navigate('/admin-panel');
+//     }
+//   })
+//       .catch((err) => console.log('Axios Error:', err));
+// }, [dispatch]);
 
 
 
