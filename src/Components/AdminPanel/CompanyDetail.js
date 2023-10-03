@@ -16,7 +16,7 @@ export default function CompanyDetail() {
   
     useEffect(() => {
       // Make a GET request to fetch company data
-      axios.get(`http://localhost:4000/get-companies/${companyId}`)
+      axios.get(`${process.env.REACT_APP_CONNECTION_URI}/get-companies/${companyId}`)
         .then((response) => {
           setCompanies(response.data.data);
           console.log(response.data)
@@ -26,7 +26,7 @@ export default function CompanyDetail() {
         });
 
         // Make a GET request to fetch the details of the selected student
-        axios.get(`http://localhost:4000/jobPost/${companyId}`)
+        axios.get(`${process.env.REACT_APP_CONNECTION_URI}/jobPost/${companyId}`)
         .then((response) => {
           const data = response.data;
           console.log(data)
@@ -60,7 +60,7 @@ export default function CompanyDetail() {
     // Delete function
     // Update the deleteCompany function in your client-side code
     const deleteCompany = (companyId) => {
-      axios.delete(`http://localhost:4000/delete-company/${companyId}`)
+      axios.delete(`${process.env.REACT_APP_CONNECTION_URI}/delete-company/${companyId}`)
         .then((response) => {
           // Handle the response (success or error)
           console.log(response.data);
@@ -156,7 +156,7 @@ export default function CompanyDetail() {
                                       {post? post.Location: ""} <span className="ml-[5%] font-semibold sm:text-[1.1rem]">Salary {post? post.Salary: ""}</span>
                                     </p>
                                     <p className="my-2">{post? post.SkillsRequirement: ""}</p>
-                                    <button className="2xl:w-[18%] xl:w-[55%] max-sm:w-[100%] max-lg:w-[50%] py-2 sm:py-2 sm:semi-bold lg:text-xl sm:px-8 max-sm:pl-12 max-sm:pr-12 max-sm:text-center rounded-[10px] bg-cyan-600 text-white hover:bg-gray-900 hover:text-white hover:animate-pulse">Apply Now</button>
+                                    
                                   </li>
                                 ))}
                               </ul>

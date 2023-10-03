@@ -21,7 +21,7 @@ export const submitForm = createAsyncThunk(
   async ({ formDataToSend }, { dispatch }) => {
     try {
       const response = await axios.post(
-        process.env.REACT_APP_STUDENTPROFILE_URI,
+        `${process.env.REACT_APP_CONNECTION_URI}/stuprofile`,
         formDataToSend,
         {
           headers: { "Content-Type": "multipart/form-data" },

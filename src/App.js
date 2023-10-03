@@ -1,9 +1,7 @@
-import React, { useEffect, useContext } from 'react';
+
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Home from './Components/Home';
 import Login from './Components/Login';
-import StudentSignup from './Components/Signup/StudentSIgnup';
-import CompanySignup from './Components/Signup/CompanySignup';
 import AdminSignup from './Components/Signup/AdminSignup';
 import Dashboard from './Components/AdminPanel/Dashboard';
 import ChangePassword from './Components/AdminPanel/ChangePassword';
@@ -23,44 +21,10 @@ import CompanyDetail from './Components/AdminPanel/CompanyDetail';
 import StudentDetail from './Components/AdminPanel/StudentDetail';
 import Logout from './Components/Logout';
 import ProtectedRoute from './ProtectedRoutes';
-import axios from 'axios';
-import { useState } from 'react';
-import { useAuth } from './Components/useAuth';
 
 
 export default function App() {
   
-  const auth = useAuth();
-  
-  // const isLoggedIn = async () => {
-  //   try {
-  //     const res = await axios.get('http://localhost:4000/auth', {
-  //       withCredentials: true, // Include credentials
-  //     });
-  
-  //     if (res.status === 200) {
-  //       setAuth(true);
-  //     } else if (res.status === 401) {
-  //       setAuth(false);
-  //     }
-  //   } catch (error) {
-  //     // Handle the error and provide user feedback
-  //     console.error(error);
-  //     setAuth(false);
-  //   }
-  // };
-  
-
-  // useEffect(()=> {
-  //   isLoggedIn()
-  // },[])
-
-  // useEffect(() => {
-  //   // You should implement a real authentication check here
-  //   // For demonstration purposes, we'll use a simple flag
-  //   const isAuthenticated = true; // Set to true if the user is authenticated
-  //   setAuth(isAuthenticated);
-  // }, []);
 
   return (
     <BrowserRouter>

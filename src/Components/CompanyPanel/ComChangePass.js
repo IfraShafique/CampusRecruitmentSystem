@@ -34,7 +34,7 @@ export default function ComChangePass(props) {
     axios.defaults.withCredentials = true;
     axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 
-    axios.post(`http://localhost:4000/change-password`, { oldPassword, newPassword })
+    axios.post(`${process.env.REACT_APP_CONNECTION_URI}/change-password`, { oldPassword, newPassword })
       .then((response) => {
         console.log("Response from server:", response.data);
   

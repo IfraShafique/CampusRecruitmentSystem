@@ -43,7 +43,7 @@ export default function StudentDetail() {
 
     // Delete function
     const deleteCompany = (studentId) => {
-        axios.delete(`http://localhost:4000/delete-student/${studentId}`)
+        axios.delete(`${process.env.REACT_APP_CONNECTION_URI}/delete-student/${studentId}`)
 
           .then((response) => {
             // Handle the response (success or error)
@@ -108,38 +108,38 @@ export default function StudentDetail() {
                   
                           <div className='flex'>
                             <h2 className='border-cyan-600 py-2 px-10 md:text-xl font-bold'>Contact No:</h2>
-                            <p className='border-cyan-600 py-2 px-10 md:text-xl'>{students.ContactNo}</p>
+                            <p className='border-cyan-600 py-2 px-10 md:text-xl'>{students? students.ContactNo: ""}</p>
                           </div>
 
                           <div className='flex'>
                             <h2 className='border-cyan-600 py-2 px-10 md:text-xl font-bold'>Address:</h2>
-                          <p className='border-cyan-600 py-2 px-10 ml-8 md:text-xl w-[60%]'>{students.Address}</p>
+                          <p className='border-cyan-600 py-2 px-10 ml-8 md:text-xl w-[60%]'>{students? students.Address: ""}</p>
                           </div>
 
                           <div className='flex'>
                             <h2 className='border-cyan-600 py-2 px-10 md:text-xl font-bold'>Department:</h2>
-                          <p className='border-cyan-600 py-2 px-10 md:text-xl -ml-2 w-[60%]'>{students.Department}</p>
+                          <p className='border-cyan-600 py-2 px-10 md:text-xl -ml-2 w-[60%]'>{students? students.Department: ""}</p>
                           </div>
 
                           <div className='flex'>
                             <h2 className='border-cyan-600 py-2 px-10 md:text-xl font-bold'>Current Semester:</h2>
-                          <p className='border-cyan-600 py-2 px-10 md:text-xl md:-ml-14 sm:ml-10 w-[60%]'>{students.CurrentSemester}</p>
+                          <p className='border-cyan-600 py-2 px-10 md:text-xl md:-ml-14 sm:ml-10 w-[60%]'>{students? students.CurrentSemester:""}</p>
                           </div>
 
                           <div className='flex'>
                             <h2 className='border-cyan-600 py-2 px-10 md:text-xl font-bold'>CGPA:</h2>
-                          <p className='border-cyan-600 py-2 px-10 md:text-xl ml-14 w-[60%]'>{students.CGPA}</p>
+                          <p className='border-cyan-600 py-2 px-10 md:text-xl ml-14 w-[60%]'>{students? students.CGPA: ""}</p>
                           </div>
 
                           <div className='flex'>
                             <h2 className='border-cyan-600 py-2 px-10 md:text-xl font-bold'>Skills:</h2>
-                          <p className='border-cyan-600 py-2 px-10 md:text-xl ml-14 w-[60%]'>{students.Skills}</p>
+                          <p className='border-cyan-600 py-2 px-10 md:text-xl ml-14 w-[60%]'>{students? students.Skills: ""}</p>
                           
                           </div>
 
                           <div className='flex'>
                             <h2 className='border-cyan-600 py-2 px-10 md:text-xl font-bold'>Resume:</h2>
-                            <a href={students.resumePath} target="_blank" rel="noopener noreferrer"><i className="fas fa-file-pdf text-cyan-900 text-2xl ml-20"></i></a>
+                            <a href={students? students.resumePath: "hidden"} target="_blank" rel="noopener noreferrer"><i className="fas fa-file-pdf text-cyan-900 text-2xl ml-20"></i></a>
                           </div>
 
                           <div className='m-10 '>

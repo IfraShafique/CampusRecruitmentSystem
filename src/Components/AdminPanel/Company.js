@@ -11,7 +11,8 @@ export default function CompanyInfo(props) {
 
   useEffect(() => {
     // Make a GET request to fetch company data
-    axios.get('http://localhost:4000/get-companies',
+    // axios.get(`http://localhost:4000/get-companies`,
+    axios.get(`${process.env.REACT_APP_CONNECTION_URI}/get-companies`,
   // Make sure to include this option
       {headers: {
         'Access-Control-Allow-Origin': '*',

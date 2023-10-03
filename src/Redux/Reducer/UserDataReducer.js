@@ -10,6 +10,7 @@ export const fetchUserRegistrationData = createAsyncThunk(
             const token = localStorage.getItem('jwt');
 
             const decodedToken = jwtDecode(token);
+            
             if (token) {
               const currentTime = Date.now() / 1000; // Convert to seconds
               if (decodedToken.exp < currentTime) {
@@ -22,7 +23,7 @@ export const fetchUserRegistrationData = createAsyncThunk(
             // Token exists, make authenticated request
             axios.defaults.withCredentials = true;
             axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
-            const response = await axios.get('http://localhost:4000/userData');
+            const response = await axios.get(`${process.env.REACT_APP_CONNECTION_URI}/userData`);
 
             console.log('Result:', response.data);
             console.log("Token", token);

@@ -40,7 +40,7 @@ console.log(token);
     axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 
 axios
-  .get('http://localhost:4000/userData')
+  .get(`${process.env.REACT_APP_CONNECTION_URI}/userData`)
   .then((result) => {
     console.log('Result:', result.data);
     console.log("Token", token);

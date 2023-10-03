@@ -26,7 +26,7 @@ export const submitForm = createAsyncThunk(
     async (formData, { dispatch }) => {
       try {
         const response = await axios.post(
-          process.env.REACT_APP_COMPANYREGISTRATION_URI,
+          `${process.env.REACT_APP_CONNECTION_URI}/company`,
           formData
         );
   

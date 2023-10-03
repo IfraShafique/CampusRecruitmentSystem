@@ -29,7 +29,7 @@ export default function StudentList() {
     axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
             
     axios
-      .get('http://localhost:4000/get-applicants') // Updated route to /get-applicants
+      .get(`${process.env.REACT_APP_CONNECTION_URI}/get-applicants`) // Updated route to /get-applicants
       .then((response) => {
         setApplicants(response.data);
         console.log("Response: ", response.data);

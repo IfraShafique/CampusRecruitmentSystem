@@ -81,7 +81,8 @@ const initialFields = [
   { name: 'ContactNo', type: 'text', value: formData.ContactNo },
   { name: 'Password', type: 'password', value: formData.Password },
   { name: 'ConfirmPassword', type: 'password', value: formData.ConfirmPassword },
-  { name: 'Role', type: 'text', value: formData.ConfirmPassword },
+  // { name: 'Role', type: 'text', value: formData.ConfirmPassword },
+  { name: 'Role', type: 'select', options: ['admin', 'company', 'student'] },
   // Add more fields as needed
 ];
 
@@ -123,7 +124,7 @@ const initialFields = [
           <h1 className="lg:text-5xl sm:text-3xl  text-2xl font-bold  max-sm:text-center mb-10">Registration</h1>
         </div>
     <form onSubmit={handleSubmit}>
-      {initialFields.map((field, index) => (
+      {/* {initialFields.map((field, index) => (
         <div key={index}>
           
           <input
@@ -134,7 +135,37 @@ const initialFields = [
             onChange={(e) => handleFieldChange(field.name, e.target.value)}
           />
         </div>
-      ))}
+      ))} */}
+
+      {/* Inside the form */}
+{initialFields.map((field, index) => (
+  <div key={index}>
+    {field.type === 'select' ? (
+      <select
+        value={formData[field.name]}
+        onChange={(e) => handleFieldChange(field.name, e.target.value)}
+        className="2xl:w-[60%] xl:w-[55%] lg:w-[80%] py-2 sm:py-3 px-8 rounded sm:rounded-[10px] max-sm:mx-2 my-1 text-black focus:outline-none focus:border-blue-500"
+      >
+        {field.options.map((option, optionIndex) => (
+          <option key={optionIndex} value={option}
+          className="2xl:w-[60%] xl:w-[55%] lg:w-[80%] py-2 sm:py-3 px-8 rounded sm:rounded-[10px] max-sm:mx-2 my-1  bg-black text-white border-style-none ">
+           
+            {option}
+          </option>
+        ))}
+      </select>
+    ) : (
+      <input
+        type={field.type}
+        value={formData[field.name]}
+        placeholder={field.name}
+        className="2xl:w-[60%] xl:w-[55%] lg:w-[80%] py-2 sm:py-3 px-8 rounded sm:rounded-[10px] max-sm:mx-2 my-1 text-black"
+        onChange={(e) => handleFieldChange(field.name, e.target.value)}
+      />
+    )}
+  </div>
+))}
+
       <div className="my-3 text-white max-sm:mx-2">
         <button className="2xl:w-[50%] xl:w-[55%] lg:w-[80%] max-lg:w-[50%] py-2 sm:py-2 sm:semi-bold lg:text-xl sm:px-8 max-sm:w-[100%] rounded-[10px] bg-cyan-950 hover:bg-gray-900 hover:text-white hover:animate-pulse">Register</button>
       </div>

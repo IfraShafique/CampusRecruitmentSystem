@@ -23,7 +23,7 @@ export const submitForm = createAsyncThunk(
   async (formData, { dispatch }) => { // Remove the 'dispatch' parameter here
     try {
       const response = await axios.post(
-        process.env.REACT_APP_POSTJOB_URI,
+        `${process.env.REACT_APP_CONNECTION_URI}/post-job`,
         formData,
         {
           headers: { "Content-Type": "multipart/form-data" },

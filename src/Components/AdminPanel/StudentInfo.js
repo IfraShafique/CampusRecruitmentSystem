@@ -12,7 +12,7 @@ export default function StudentInfo(props) {
 
     useEffect(() => {
       // Make a GET request to fetch company data
-      axios.get('http://localhost:4000/get-students')
+      axios.get(`${process.env.REACT_APP_CONNECTION_URI}/get-students`)
         .then((response) => {
           setStudents(response.data.data);
           console.log(response.data.data)

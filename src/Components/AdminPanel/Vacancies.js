@@ -27,7 +27,7 @@ export default function StudentInfo(props) {
   };
   useEffect(() => {
     axios
-      .get("http://localhost:4000/get-Jobs")
+      .get(`${process.env.REACT_APP_CONNECTION_URI}/get-Jobs`)
       .then((response) => {
         setPosts(response.data.data); // Corrected variable name
         console.log(response.data.data);
@@ -43,7 +43,7 @@ export default function StudentInfo(props) {
 
   const deleteJob = (jobId) => {
     axios
-      .delete(`http://localhost:4000/delete-job/${jobId}`)
+      .delete(`${process.env.REACT_APP_CONNECTION_URI}/delete-job/${jobId}`)
       .then((response) => {
         // Handle the response (success or error)
         console.log(response.data);
@@ -76,7 +76,7 @@ export default function StudentInfo(props) {
 
   const editJob = (jobId) => {
     axios
-      .put(`http://localhost:4000/edit-job/${jobId}`, editedData)
+      .put(`${process.env.REACT_APP_CONNECTION_URI}/edit-job/${jobId}`, editedData)
       .then((response) => {
         setEditMode(null);
         const updatedPosts = posts.map((post) =>

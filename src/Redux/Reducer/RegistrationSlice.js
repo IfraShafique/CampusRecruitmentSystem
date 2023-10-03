@@ -23,7 +23,7 @@ const initialState = {
     async (formData, {dispatch}) => {
       try{
         const response = await axios.post(
-          process.env.REACT_APP_STUDENTREGISTRATION_URI, formData
+          `${process.env.REACT_APP_CONNECTION_URI}/registration`, formData
         );
 
         // Successfully registration message
