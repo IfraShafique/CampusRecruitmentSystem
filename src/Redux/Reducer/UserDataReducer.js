@@ -11,13 +11,13 @@ export const fetchUserRegistrationData = createAsyncThunk(
 
             const decodedToken = jwtDecode(token);
             
-            if (token) {
-              const currentTime = Date.now() / 1000; // Convert to seconds
-              if (decodedToken.exp < currentTime) {
-                // Token has expired
-                // Perform logout or redirect to login page
-                localStorage.removeItem('jwt'); // Clear the expired token from local storage
-              }}
+            // if (token) {
+            //   const currentTime = Date.now() / 1000; // Convert to seconds
+            //   if (decodedToken.exp < currentTime) {
+            //     // Token has expired
+            //     // Perform logout or redirect to login page
+            //     localStorage.removeItem('jwt'); // Clear the expired token from local storage
+            //   }}
         
             console.log(decodedToken);
             // Token exists, make authenticated request
