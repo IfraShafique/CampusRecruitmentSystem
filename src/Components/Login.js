@@ -40,7 +40,7 @@ export default function Login() {
         { LoginID, Password },
         
         {
-          withCredentials: true, // Make sure to include this option
+          // withCredentials: true, // Make sure to include this option
           headers: {
             'Access-Control-Allow-Origin': '*',
             'Content-Type': 'application/json',
@@ -53,7 +53,7 @@ export default function Login() {
       console.log('Token:', token);
   
       // Set the token as a cookie with an expiration date (adjust as needed)
-      const expirationDate = new Date(Date.now() + 18000 * 1000); // Token expiration time (1 hour)
+      // const expirationDate = new Date(Date.now() + 18000 * 1000); // Token expiration time (1 hour)
       
       const userData = response.data;
       console.log(userData);

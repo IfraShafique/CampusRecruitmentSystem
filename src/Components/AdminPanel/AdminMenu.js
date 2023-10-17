@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Link, Route, Routes } from "react-router-dom";
+import React from "react";
+import { Link } from "react-router-dom";
 
 export default function AdminMenu() {
   return (

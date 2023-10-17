@@ -1,7 +1,6 @@
 
 import React, { useState } from 'react';
 import img2 from '../Images/img2.png';
-import { Link } from 'react-router-dom';
 import AdminMenu from './AdminMenu';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';

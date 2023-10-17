@@ -6,7 +6,7 @@ import jwtDecode from 'jwt-decode';
 
 export default function StudentList() {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [stuProfiles, setStuProfile] = useState([]);
+  // const [stuProfiles, setStuProfile] = useState([]);
   const [applicant, setApplicants] = useState([]);
     
   useEffect(() => {

@@ -22,7 +22,7 @@ export const fetchUserRegistrationData = createAsyncThunk(
             console.log(decodedToken);
             // Token exists, make authenticated request
             axios.defaults.withCredentials = true;
-            axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+            axios.defaults.headers.common['Authorization'] = token;
             const response = await axios.get(`${process.env.REACT_APP_CONNECTION_URI}/userData`);
 
             console.log('Result:', response.data);
