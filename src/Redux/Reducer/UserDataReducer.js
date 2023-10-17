@@ -11,18 +11,18 @@ export const fetchUserRegistrationData = createAsyncThunk(
 
             const decodedToken = jwtDecode(token);
             
-            // if (token) {
-            //   const currentTime = Date.now() / 1000; // Convert to seconds
-            //   if (decodedToken.exp < currentTime) {
-            //     // Token has expired
-            //     // Perform logout or redirect to login page
-            //     localStorage.removeItem('jwt'); // Clear the expired token from local storage
-            //   }}
+            if (token) {
+              const currentTime = Date.now() / 1000; // Convert to seconds
+              if (decodedToken.exp < currentTime) {
+                // Token has expired
+                // Perform logout or redirect to login page
+                localStorage.removeItem('jwt'); // Clear the expired token from local storage
+              }}
         
             console.log(decodedToken);
             // Token exists, make authenticated request
             axios.defaults.withCredentials = true;
-            axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+            axios.defaults.headers.common['Authorization'] = token;
             const response = await axios.get(`${process.env.REACT_APP_CONNECTION_URI}/userData`);
 
             console.log('Result:', response.data);
