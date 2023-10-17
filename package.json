@@ -1,7 +1,7 @@
 {
   "name": "client",
   "version": "0.1.0",
-  "proxy": "https://campus-recruitment-system-backend-kvli0ru4y-ifrashafique.vercel.app",
+  "proxy": "https://campus-recruitment-system-backend.vercel.app",
   "private": true,
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.5",
