@@ -16,7 +16,7 @@ export const fetchUserRegistrationData = createAsyncThunk(
               if (decodedToken.exp < currentTime) {
                 // Token has expired
                 // Perform logout or redirect to login page
-                localStorage.removeItem('jwt'); // Clear the expired token from local storage
+                localStorage.removeItem('jwt'); // Clear the expired token from local storage 
               }}
         
             console.log(decodedToken);
