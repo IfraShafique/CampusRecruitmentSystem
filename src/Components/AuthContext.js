@@ -1,16 +1,9 @@
 import { createContext, useContext, useState } from 'react';
-import Cookies from 'js-cookie';
 
 export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-  const [user, setUser] = useState(()=>{
-    let userData = Cookies.get('jwt');
-    if(userData){
-      return JSON.parse(userData)
-    }
-    return null;
-  });
+  const [user, setUser] = useState();
 
   // Function to set the user upon login
   const login = (userData) => {
