@@ -39,10 +39,15 @@ export default function Login() {
         `${process.env.REACT_APP_CONNECTION_URI}/login`,
         { LoginID, Password },
         
+        // {
+        //   // withCredentials: true, // Make sure to include this option
+        //   headers: {
+        //     'Access-Control-Allow-Origin': '*',
+        //     'Content-Type': 'application/json',
+        //   },
         {
-          // withCredentials: true, // Make sure to include this option
+          withCredentials: true, // Send credentials with the request
           headers: {
-            'Access-Control-Allow-Origin': '*',
             'Content-Type': 'application/json',
           },
         }
