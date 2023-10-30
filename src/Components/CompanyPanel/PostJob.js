@@ -68,7 +68,7 @@ export default function PostJob(props) {
     
 
     axios
-      .post("https://campus-recruitment-system-backend-btjmnyhxc-ifrashafique.vercel.app/post-job", formData)
+      .post(`${process.env.REACT_APP_CONNECTION_URI}/post-job`, formData)
       .then((result) => {
         console.log('Job Posted Successfully', result.data);
         dispatch(resetForm());
