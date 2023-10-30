@@ -32,7 +32,7 @@ export default function ComChangePass(props) {
 
     // Token exists, make authenticated request
     axios.defaults.withCredentials = true;
-    axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+    axios.defaults.headers.common['Authorization'] = token;
 
     axios.post(`${process.env.REACT_APP_CONNECTION_URI}/change-password`, { oldPassword, newPassword })
       .then((response) => {
