@@ -19,7 +19,7 @@ export default function StudentDetail() {
       }
 
       // Make a GET request to fetch the details of the selected student
-      axios.get(`http://localhost:4000/student-profile/${studentId}`)
+      axios.get(`${process.env.REACT_APP_CONNECTION_URI}/student-profile/${studentId}`)
           .then((response) => {
               const data = response.data;
 
